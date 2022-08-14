@@ -18,7 +18,6 @@ function Home(props) {
         <title>AlwaysBeDream | Personal Site</title>
         <meta name="description" content="HI, I'm Aji Dwi Prastio, a freelance web developer from Indonesia. I help brands or individuals build their websites. I am also active in testing products, especially on crypto platforms." />
         <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -61,8 +60,8 @@ function Home(props) {
               Currently based in Yogyakarta, Indonesia — available for remote-friendly work.
               </p>
             </div>
-            <div className={classnames(styles.git_image , "basis-1/2")}>
-              <img src='/illustration2.svg'></img>
+            <div className={classnames(styles.git_image , "basis-1/2 relative block")}>
+              <Image layout='responsive' width={100} height={100} src='/illustration2.svg'></Image>
             </div>
           </div>
         </div>

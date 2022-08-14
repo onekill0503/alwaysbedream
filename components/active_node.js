@@ -5,26 +5,24 @@ import styles from '../styles/Home.module.css'
 import { loadFull } from "tsparticles";
 import { useCallback } from 'react'
 import classnames from 'classnames'
+import Image from 'next/image';
 
-const active_node = (props) => {
+const Active_node = (props) => {
+    var key = 0
 
-    const particlesInit = useCallback(async (engine) => {
-        console.log(engine);
-        // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-        // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-        // starting from v2 you can add only the features you need reducing the bundle size
+    const useParticlesInit = useCallback(async (engine) => {
         await loadFull(engine);
       }, []);
     
-      const particlesLoaded = useCallback(async (container) => {
+      const useParticlesLoaded = useCallback(async (container) => {
           await console.log(container);
       }, []);
 
     return (<div id="active_node" className={styles.active_node}>
         <Particles 
           id="tsparticles"
-          init={particlesInit}
-          loaded={particlesLoaded}
+          init={useParticlesInit}
+          loaded={useParticlesLoaded}
           options={{
             "style": {
               "position": "absolute"
@@ -149,11 +147,12 @@ const active_node = (props) => {
         {/* Component Items */}
         <div className={classnames(styles.an_wrapper , "flex justify-between align-baseline flex-wrap flex-row")}>
           {props.data.map(node => {
+            key++
             return (
-              <div className='basis-1/4'>
+              <div key={key} className='basis-1/4'>
                 <div className={styles.an_item}>
                   <div className="flex justify-between">
-                    <img className={styles.an_item_image} src={node.logo}></img>
+                    <Image width={35} height={35} className={styles.an_item_image} src={node.logo}></Image>
                     <div className={styles.an_item_title}>{node.name}</div>
                   </div>
                   <div className={styles.an_status_wrapper}>
@@ -168,4 +167,4 @@ const active_node = (props) => {
       </div>)
 }
 
-export default active_node;
+export default Active_node;

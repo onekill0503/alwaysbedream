@@ -91,12 +91,13 @@
 }
 .banner_rectangle {
   position: absolute;
-  width: 200%;
+  width: 300%;
   left: 0;
   top: 50px;
   transform: rotate(5deg);
   z-index: 1;
 }
+/* .banner_rectangle > span {position: static !important;} */
 
 /* Portofolio Styles */
 .portofolio_wrapper {

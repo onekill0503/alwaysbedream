@@ -2,6 +2,7 @@ import styles from '../styles/Home.module.css'
 import {ArrowRightIcon} from '@heroicons/react/outline'
 import classnames from 'classnames'
 import TextLoop from "react-text-loop";
+import Image from "next/image"
 
 const banner = () => {
     return (<div className={classnames("px-60 flex justify-between mt-44 relative" , styles.banner_wrapper)}>
@@ -20,7 +21,7 @@ const banner = () => {
           <span>Tester</span>
         </TextLoop>
       </div>
-      <div className={styles.banner_description}>HI, I'm Aji Dwi Prastio, a freelance web developer from Indonesia. I help brands or individuals build their websites. I am also active in testing products, especially on crypto platforms.</div>
+      <div className={styles.banner_description}>HI, I&apos;m Aji Dwi Prastio, a freelance web developer from Indonesia. I help brands or individuals build their websites. I am also active in testing products, especially on crypto platforms.</div>
       <button className={styles.banner_btn}>Know Me More <ArrowRightIcon className="inline-block w-5 h-5" /></button>
     </div>
     <div className={styles.banner_illustration}>

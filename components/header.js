@@ -1,6 +1,7 @@
 import styles from '../styles/Home.module.css'
 import classnames from 'classnames'
 import {scroller} from 'react-scroll'
+import Image from 'next/image'
 
 const header = () => {
 
@@ -18,7 +19,7 @@ const header = () => {
     return (
         <div className={classnames("px-52 flex justify-between my-5 items-baseline" , styles.header_wrapper)}>
           <div className={styles.logo}>
-            <img src='/logo.png' className={styles.logo_image}></img>
+            <Image width={227} height={49} alt="Logo" src='/logo.png' className={styles.logo_image}></Image>
           </div>
           <div className={styles.navbar}>
             <div onClick={(e) => goto(e)} target="portofolio" className={styles.nav_item}>Portofolio</div>
@@ -27,23 +28,23 @@ const header = () => {
           </div>
           <div className={styles.socialmedia}>
             <span className='inline-block mx-5'>
-              <a href="https://github.com/onekill0503" target='_blank'>
-                <img src='/platform/github.png'></img>
+              <a href="https://github.com/onekill0503" target='_blank' rel="noreferrer">
+                <Image width="25px" height="25px" src='/platform/github.png'></Image>
               </a>
             </span>
             <span className='inline-block mx-5'>
-              <a href="https://www.instagram.com/alwaysbedream/" target='_blank'>
-                <img src='/platform/instagram.png'></img>
+              <a href="https://www.instagram.com/alwaysbedream/" target='_blank' rel="noreferrer">
+                <Image width="25px" height="25px" src='/platform/instagram.png'></Image>
               </a>
             </span>
             <span className='inline-block mx-5'>
-              <a href="https://twitter.com/GM_Aji123" target='_blank'>
-                <img src='/platform/twitter.png'></img>
+              <a href="https://twitter.com/GM_Aji123" target='_blank' rel="noreferrer">
+                <Image width="25px" height="25px" src='/platform/twitter.png'></Image>
               </a>
             </span>
             <span className='inline-block mx-5'>
-              <a href="https://facebook.com/aji.d.prasetio" target='_blank'>
-                <img src='/platform/facebook.png'></img>
+              <a href="https://facebook.com/aji.d.prasetio" target='_blank' rel="noreferrer">
+                <Image width="25px" height="25px" src='/platform/facebook.png'></Image>
               </a>
             </span>
           </div>
