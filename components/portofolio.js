@@ -25,7 +25,7 @@ const portofolio = (props) => {
                 <div key={id} className={classnames(styles.carousel_item , "flex")}>
                   <div
                     style={{backgroundImage: `url('${porto.image}')`}}
-                    className={classnames("flex-1 relative bg-cover bg-center")}
+                    className={classnames(styles.porto_image,"flex-1 relative bg-cover bg-center")}
                   ></div>
                   <div className={classnames(styles.carousel_description , "flex-1")}>
                     <div className={styles.carousel_des_title}>{porto.name}</div>

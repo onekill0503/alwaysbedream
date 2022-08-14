@@ -10,12 +10,12 @@ const banner = () => {
     <img src='/dot.svg' className={styles.banner_dot2}></img>
     <div className={styles.banner_text}>
       <div className={styles.banner_title}>
-        <TextLoop>
+        <TextLoop mask={true} fade={false}>
           <span>Experienced Blockchain</span>
           <span>Experienced Website</span>
           <span>Cryptocurrency Project</span>
         </TextLoop>{" "}
-        <TextLoop className={styles.highlight}>
+        <TextLoop mask={true} delay={1000} fade={false} className={styles.highlight}>
           <span>Validator</span>
           <span>Developer</span>
           <span>Tester</span>

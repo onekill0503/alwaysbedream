@@ -16,6 +16,7 @@ body {
 
 body {
   overflow-x: hidden;
+  position: relative;
 }
 
 a {
