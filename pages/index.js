@@ -23,13 +23,14 @@ const testHttp = async (url , param) => {
     .catch(err => {return false})
 }
 const testTcp = async (data) => {
-  return await tcp.check(Number(data.port) , data.host)
-  .then(function(inUse) {
-      return inUse
-  }, function(err) {
-      console.error('Error on check:', err.message);
-      return false
-  });
+  // return await tcp.check(Number(data.port) , data.host)
+  // .then(function(inUse) {
+  //     return inUse
+  // }, function(err) {
+  //     console.error('Error on check:', err.message);
+  //     return false
+  // });
+  return true
 }
 
 function Home(props) {
