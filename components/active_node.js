@@ -155,9 +155,16 @@ const Active_node = (props) => {
                     <Image width={35} height={35} className={styles.an_item_image} src={node.logo}></Image>
                     <div className={styles.an_item_title}>{node.name}</div>
                   </div>
-                  <div className={styles.an_status_wrapper}>
-                    <span className={classnames(styles.an_status_title , "block mb-2")}>Network Status</span>
-                    <span className={classnames(styles.an_status_title , `block ${node.online ? 'text-green-500' : 'text-red-500'}`)}><StatusOnlineIcon className='h-6 w-6 inline-block' /> {node.online ? 'Online' : 'Offline'}</span>
+                  <div className={classnames(styles.an_status_wrapper , "flex justify-between items-center")}>
+                    <div>
+                      <span className={classnames(styles.an_status_title , "block mb-2")}>Network Status</span>
+                      <span className={classnames(styles.an_status_title , `block ${node.online ? 'text-green-500' : 'text-red-500'}`)}><StatusOnlineIcon className='h-6 w-6 inline-block' /> {node.online ? 'Online' : 'Offline'}</span>
+                    </div>
+                    <div className="cursor-pointer">
+                      <a href={node.twitter ? node.twitter : "#"} target="_blank" rel="noreferrer">
+                        <Image src="/platform/twitter.png" width={24} height={20}></Image>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

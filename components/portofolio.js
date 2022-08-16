@@ -18,6 +18,7 @@ const portofolio = (props) => {
             swipeable={true}
             interval={2000}
             autoPlay={true}
+            showThumbs={false}
           >
             {props.data.map(porto => {
               id++

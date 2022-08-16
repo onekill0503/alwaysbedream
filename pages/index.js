@@ -9,6 +9,28 @@ import classnames from 'classnames'
 import {EmojiSadIcon} from '@heroicons/react/outline'
 import axios from 'axios'
 import { useState } from 'react'
+import tcp from 'tcp-port-used'
+// import net from 'net'
+
+const testHttp = async (url , param) => {
+  if(param){
+    return await axios({method: param.method , url: url, data: param.data})
+      .then(res => {return res.status == 200 ? true : false})
+      .catch(err => {return false})
+  }
+  return await axios.get(url)
+    .then(res => {return res.status == 200 ? true : false})
+    .catch(err => {return false})
+}
+const testTcp = async (data) => {
+  return await tcp.check(Number(data.port) , data.host)
+  .then(function(inUse) {
+      return inUse
+  }, function(err) {
+      console.error('Error on check:', err.message);
+      return false
+  });
+}
 
 function Home(props) {
 
@@ -35,6 +57,17 @@ function Home(props) {
 
         {/* Banner Component */}
         <Banner />
+
+        {/* Technolgy Component */}
+
+        <div className={classnames(styles.tech_wrapper , "text-center")}>
+          <img src="/blob1.png" className={styles.blob1} />
+          <img src="/blob2.png" className={styles.blob2} />
+          <center>
+            <span className={classnames(styles.tech_title , "block")}>What Technolgy do I use</span>
+            <img src="/tech.svg" className={styles.tech_illustration} />
+          </center>
+        </div>
 
         {/* Portofolio Component */}
         <Portofolio data={props.siteData.portofolio} />
@@ -78,9 +111,20 @@ function Home(props) {
 }
 
 export async function getServerSideProps() {
-  const siteData = await axios.get("https://raw.githubusercontent.com/onekill0503/personal-site/main/data.json")
+  var siteData = await axios.get("https://raw.githubusercontent.com/onekill0503/personal-site/main/data.json")
     .then(res => {return res.data})
     .catch(err => setSiteData({node: [], portofolio: []}))
+  
+  // testing endpoint
+  for(let i = 0;i < siteData.node.length;i++){
+    if(siteData.node[i].endpoint.type == 'http'){
+      siteData.node[i].online = await testHttp(siteData.node[i].endpoint.host , siteData.node[i].endpoint.param ? siteData.node[i].endpoint.param : undefined)
+    }else if(siteData.node[i].endpoint.type == 'tcp'){
+      siteData.node[i].online = await testTcp(siteData.node[i].endpoint)
+    }else {
+      siteData.node[i].online = false
+    }
+  }
   // Pass data to the page via props
   return { props: { siteData } }
 }

@@ -99,9 +99,60 @@
 }
 /* .banner_rectangle > span {position: static !important;} */
 
+/* Tech styles */
+.tech_wrapper {
+  margin-top: 500px;
+  position: relative;
+}
+.tech_title {
+  font-family: 'MuseoModerno';
+  font-size: 40px;
+  font-weight: 400;
+  margin-bottom: 100px;
+  position: relative;
+  width: 500px;
+  z-index: 11;
+  padding: 0 2px;
+}
+.tech_title::after {
+  content: '';
+  display: block;
+  border: none;
+  width: 15%;
+  height: 5px;
+  background-color: #5D59FF;
+  margin-top: 15px;
+}
+/* .tech_title::before {
+  content: '';
+  display: block;
+  border: none;
+  width: 15%;
+  height: 5px;
+  background-color: #5D59FF;
+  position: absolute;
+  left: 0;
+} */
+.blob1 {
+  width: 25%;
+  position: absolute;
+  bottom: 0;
+  left: -150px;
+}
+.blob2 {
+  width: 25%;
+  position: absolute;
+  top: 0;
+  right: -150px;
+}
+
+.tech_illustration {
+  width: 50%;   
+}
+
 /* Portofolio Styles */
 .portofolio_wrapper {
-  margin-top: 500px;
+  margin-top: 200px;
   position: relative;
   text-align: center;
   z-index: 5;
@@ -249,7 +300,7 @@
 
 /* Get in touch styles */
 .git_wrapper {
-  min-height: 50vh;
+  min-height: 200px;
   background-color: white;
 }
 .git_text_title {
@@ -306,6 +357,8 @@
 }
 
 @media only screen and (max-width:380px) {
+  .tech_wrapper {margin-top: 200px !important;}
+  .tech_title{width: 380px !important; font-size: 25px !important;}
   .banner_illustration img:nth-child(1){display: none;}
   .carousel_description {
     padding: 25px 0 !important;
@@ -323,9 +376,11 @@
     font-size: 12px;
   }
   .banner_illustration img:nth-child(1){
-    width: 15em !important;
+    /* width: 15em !important; */
+    display: none !important;
   }
-  .banner_wrapper {padding: 0 2em;}
+  .banner_wrapper {padding: 0 3em !important;}
+  /* .banner_wrapper {padding: 0 2em;} */
   .porto_title {font-size: 35px;}
   .porto_description {font-size: 15px;}
   .an_title {font-size: 35px;}
@@ -341,6 +396,8 @@
 }
 
 @media only screen and (max-width:768px) {
+  .tech_wrapper {margin-top: 300px !important;}
+  .tech_illustration {width: 75%;}
   .carousel_wrapper {margin: 75px 50px}
   .carousel_des {margin-top: 20px;}
   .carousel_des_title {font-size: 1.5em !important;}
@@ -372,6 +429,9 @@
   }
 }
 @media only screen and (max-width: 1200px){
+  .blob2 {display: none;}
+  .tech_wrapper {margin-top: 200px;}
+  .tech_title { font-size: 35px;width: 450px;}
   .portofolio_wrapper{margin-top: 300px;}
   .carousel_des {font-size: .8em;}
   .carousel_des_title {font-size: 2em;}

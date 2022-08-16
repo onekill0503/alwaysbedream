@@ -22,7 +22,7 @@ const banner = () => {
         </TextLoop>
       </div>
       <div className={styles.banner_description}>HI, I&apos;m Aji Dwi Prastio, a freelance web developer from Indonesia. I help brands or individuals build their websites. I am also active in testing products, especially on crypto platforms.</div>
-      <button className={styles.banner_btn}>Know Me More <ArrowRightIcon className="inline-block w-5 h-5" /></button>
+      {/* <button className={styles.banner_btn}>Know Me More <ArrowRightIcon className="inline-block w-5 h-5" /></button> */}
     </div>
     <div className={styles.banner_illustration}>
       <img src='/illustration1.svg' className="h-auto max-w-2xl relative z-10"></img>
