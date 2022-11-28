@@ -10,30 +10,28 @@ import {EmojiSadIcon} from '@heroicons/react/outline'
 import axios from 'axios'
 import { useState } from 'react'
 // import tcp from 'tcp-port-used'
-// import net from 'net'
 
-const testHttp = async (url , param) => {
-  if(param){
-    return await axios({method: param.method , url: url, data: param.data})
-      .then(res => {return res.status == 200 ? true : false})
-      .catch(err => {return false})
+
+const asyncLoop = async (siteData , i) => {
+  if(i < 0){
+    return false
+  }else{
+    if(siteData.node[i].endpoint.type == 'http'){
+      console.log('http')
+      siteData.node[i].online = await testHttp(siteData.node[i].endpoint.host , siteData.node[i].endpoint.param ? siteData.node[i].endpoint.param : undefined)
+    }else if(siteData.node[i].endpoint.type == 'tcp'){
+      console.log('tcp')
+      siteData.node[i].online = await testTcp(siteData.node[i].endpoint)
+    }else {
+      siteData.node[i].online = false
+    }
+    await asyncLoop(siteData , (i - 1))
   }
-  return await axios.get(url)
-    .then(res => {return res.status == 200 ? true : false})
-    .catch(err => {return false})
-}
-const testTcp = async (data) => {
-  // return await tcp.check(Number(data.port) , data.host)
-  // .then(function(inUse) {
-  //     return inUse
-  // }, function(err) {
-  //     console.error('Error on check:', err.message);
-  //     return false
-  // });
-  return true
 }
 
 function Home(props) {
+
+  const [data , setData] = useState({})
 
   return (
     <div>
@@ -116,17 +114,18 @@ export async function getServerSideProps() {
     .then(res => {return res.data})
     .catch(err => setSiteData({node: [], portofolio: []}))
   
-  // testing endpoint
-  for(let i = 0;i < siteData.node.length;i++){
-    if(siteData.node[i].endpoint.type == 'http'){
-      siteData.node[i].online = await testHttp(siteData.node[i].endpoint.host , siteData.node[i].endpoint.param ? siteData.node[i].endpoint.param : undefined)
-    }else if(siteData.node[i].endpoint.type == 'tcp'){
-      siteData.node[i].online = await testTcp(siteData.node[i].endpoint)
-    }else {
-      siteData.node[i].online = false
-    }
-  }
-  // Pass data to the page via props
+  // // testing endpoint
+  // for(let i = 0;i < siteData.node.length;i++){
+  //   if(siteData.node[i].endpoint.type == 'http'){
+  //     siteData.node[i].online = await testHttp(siteData.node[i].endpoint.host , siteData.node[i].endpoint.param ? siteData.node[i].endpoint.param : undefined)
+  //   }else if(siteData.node[i].endpoint.type == 'tcp'){
+  //     siteData.node[i].online = await testTcp(siteData.node[i].endpoint)
+  //   }else {
+  //     siteData.node[i].online = false
+  //   }
+  // }
+  
+  // // Pass data to the page via props
   return { props: { siteData } }
 }
 
