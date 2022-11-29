@@ -17,10 +17,8 @@ const asyncLoop = async (siteData , i) => {
     return false
   }else{
     if(siteData.node[i].endpoint.type == 'http'){
-      console.log('http')
       siteData.node[i].online = await testHttp(siteData.node[i].endpoint.host , siteData.node[i].endpoint.param ? siteData.node[i].endpoint.param : undefined)
     }else if(siteData.node[i].endpoint.type == 'tcp'){
-      console.log('tcp')
       siteData.node[i].online = await testTcp(siteData.node[i].endpoint)
     }else {
       siteData.node[i].online = false
