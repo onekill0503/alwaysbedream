@@ -83,7 +83,7 @@ function Home(props) {
                 <div></div>
               </div>
               <p className={classnames(styles.git_text_description , "mt-14")}>
-              If you want to chat about a project — email me on aji@alwaysbedream.com<br /><br />
+              If you want to chat about a project — email me on business@alwaysbedream.com<br /><br />
 
               I can help design and build a personal or business website for your product .I can build a back-end for your program or website. I also can create a telegram or discord bot to help you manage your brand community<br /><br />
 
