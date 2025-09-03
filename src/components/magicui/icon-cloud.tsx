@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, ReactElement } from "react";
+import React, { useEffect, useRef, useState, type ReactElement } from "react";
 import { renderToString } from "react-dom/server";
 
 interface IconPosition {
@@ -43,12 +43,12 @@ export function IconCloud({
 }: IconCloudProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [iconPositions, setIconPositions] = useState<IconPosition[]>([]);
-  const [rotation, setRotation] = useState<Rotation>({ x: 0, y: 0 });
+  const [rotation] = useState<Rotation>({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [lastMousePos, setLastMousePos] = useState<MousePosition>({ x: 0, y: 0 });
   const [mousePos, setMousePos] = useState<MousePosition>({ x: 0, y: 0 });
   const [targetRotation, setTargetRotation] = useState<TargetRotation | null>(null);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | null>(null);
   const rotationRef = useRef<Rotation>(rotation);
   const iconCanvasesRef = useRef<HTMLCanvasElement[]>([]);
   const imagesLoadedRef = useRef<boolean[]>([]);

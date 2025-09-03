@@ -2,12 +2,12 @@ import { cn } from "../../lib/utils";
 import { motion, useScroll } from "framer-motion";
 import React from "react";
 
-interface ScrollProgressProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ScrollProgressProps {
   className?: string;
 }
 
 export const ScrollProgress = React.forwardRef<HTMLDivElement, ScrollProgressProps>(
-  ({ className, ...props }, ref) => {
+  ({ className }, ref) => {
     const { scrollYProgress } = useScroll();
 
     return (
@@ -20,7 +20,7 @@ export const ScrollProgress = React.forwardRef<HTMLDivElement, ScrollProgressPro
         style={{
           scaleX: scrollYProgress,
         }}
-        {...props} />
+      />
     );
   }
 );

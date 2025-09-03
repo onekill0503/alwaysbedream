@@ -1,5 +1,5 @@
 import { cn } from "../../lib/utils";
-import { useState, ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 
 interface TimelineStep {
   icon: ReactNode;

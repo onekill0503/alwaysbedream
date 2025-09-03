@@ -1,5 +1,5 @@
 import { motion, useSpring } from "framer-motion";
-import { FC, JSX, useEffect, useRef, useState } from "react";
+import { type FC, type JSX, useEffect, useRef, useState } from "react";
 
 interface Position {
   x: number;
@@ -87,7 +87,7 @@ export function SmoothCursor({
     restDelta: 0.001,
   },
 }: SmoothCursorProps) {
-  const [isMoving, setIsMoving] = useState(false);
+  const [, setIsMoving] = useState(false);
   const lastMousePos = useRef<Position>({ x: 0, y: 0 });
   const velocity = useRef<Position>({ x: 0, y: 0 });
   const lastUpdateTime = useRef(Date.now());

@@ -1,4 +1,4 @@
-import { MotionDiv, MotionSpan, MotionP } from './motion'
+import { MotionDiv, MotionP } from './motion'
 import { useEffect, useState } from 'react'
 
 interface LoadingProps {

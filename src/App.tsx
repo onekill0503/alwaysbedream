@@ -49,7 +49,7 @@ function App() {
             key="content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6 }}
           >
             <SmoothCursor />
             <ScrollProgress className="top-20 h-0.5 z-[60]" />
