@@ -22,7 +22,12 @@ const About: React.FC = () => {
     "docker",
     "aws",
     "solidity",
-    "ethereum"
+    "ethereum",
+    "docker",
+    "vault",
+    "kubernetes",
+    "bun",
+    "hono"
   ]
 
   const images: string[] = slugs.map(

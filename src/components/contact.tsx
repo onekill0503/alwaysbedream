@@ -170,10 +170,6 @@ const Contact: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                  <span className="font-semibold text-green-800">Available for work</span>
-                </div>
                 <p className="text-gray-600">
                   Currently open for new projects and collaborations. 
                   Typical response time: within 24 hours.

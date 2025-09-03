@@ -10,6 +10,7 @@ import Contact from './components/contact'
 import Loading from './components/loading'
 import { SmoothCursor } from './components/ui/smooth-cursor'
 import { ScrollProgress } from './components/magicui/scroll-progress'
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -81,6 +82,7 @@ function App() {
           </MotionDiv>
         )}
       </AnimatePresence>
+      <SpeedInsights />
     </div>
   )
 }
