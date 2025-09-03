@@ -51,18 +51,18 @@ const About: React.FC = () => {
   }
 
   return (
-    <section id="about" className="py-24">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="about" className="py-16 sm:py-20 lg:py-24">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <motion.div variants={itemVariants} className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">About</h2>
-            <div className="grid md:grid-cols-2 gap-12">
-              <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
+          <motion.div variants={itemVariants} className="mb-12 lg:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">About</h2>
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+              <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-gray-600 leading-relaxed">
                 <p>
                   I&apos;m a full-stack developer passionate about creating exceptional 
                   digital experiences. With 5+ years in the industry, I&apos;ve worked 
@@ -81,40 +81,13 @@ const About: React.FC = () => {
               </div>
               
               <div>
-                <div className="relative flex h-80 w-full items-center justify-center overflow-hidden">
+                <div className="relative flex h-64 sm:h-72 lg:h-80 w-full items-center justify-center overflow-hidden">
                   <IconCloud images={images} />
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Experience Timeline */}
-          <motion.div variants={itemVariants} className="border-t border-gray-200 pt-16">
-            <h3 className="text-xl font-semibold mb-8">Experience</h3>
-            <div className="space-y-8">
-              <div className="flex flex-col md:flex-row md:items-center gap-4">
-                <div className="md:w-32 text-sm text-gray-500">2020 - Present</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold">Freelance Developer</h4>
-                  <p className="text-gray-600 mt-1">
-                    Full-stack development for various clients, specializing in React, 
-                    Next.js, and blockchain integrations.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex flex-col md:flex-row md:items-center gap-4">
-                <div className="md:w-32 text-sm text-gray-500">2019 - 2020</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold">Blockchain Validator</h4>
-                  <p className="text-gray-600 mt-1">
-                    Active validator and tester for multiple blockchain networks 
-                    and cryptocurrency platforms.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>

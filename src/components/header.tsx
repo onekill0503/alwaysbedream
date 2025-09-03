@@ -31,7 +31,7 @@ const Header = () => {
         transition={{ duration: 0.5 }}
         className="fixed top-0 left-0 right-0 z-50 bg-white"
       >
-        <div className="flex items-center justify-between px-8 py-6">
+        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -41,7 +41,7 @@ const Header = () => {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.name}
@@ -56,7 +56,7 @@ const Header = () => {
           {/* CTA Button */}
           <button
             onClick={() => goto('contact')}
-            className="hidden md:block bg-red-500 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-red-600 transition-colors"
+            className="hidden lg:block bg-red-500 text-white px-4 xl:px-6 py-2 rounded-full text-sm font-medium hover:bg-red-600 transition-colors"
           >
             Schedule a Call
           </button>
@@ -64,7 +64,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden flex flex-col items-center justify-center w-6 h-6 space-y-1"
+            className="lg:hidden flex flex-col items-center justify-center w-6 h-6 space-y-1"
           >
             <span className={`block w-5 h-0.5 bg-black transition-all ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
             <span className={`block w-5 h-0.5 bg-black transition-all ${isMenuOpen ? 'opacity-0' : ''}`} />
@@ -79,7 +79,7 @@ const Header = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white border-t px-8 py-6"
+              className="lg:hidden bg-white border-t px-4 sm:px-6 py-6"
             >
               {navItems.map((item) => (
                 <button
@@ -106,7 +106,7 @@ const Header = () => {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
-        className="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden lg:block"
+        className="fixed left-4 xl:left-8 top-1/2 -translate-y-1/2 z-40 hidden xl:block"
       >
         <div className="flex flex-col space-y-6">
           <button className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-black transition-colors">

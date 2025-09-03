@@ -67,7 +67,7 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <section id="contact" className="min-h-screen py-24 px-8 lg:px-16 relative overflow-hidden bg-gradient-to-br from-red-50 to-pink-50">
+    <section id="contact" className="min-h-screen py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 xl:px-16 relative overflow-hidden bg-gradient-to-br from-red-50 to-pink-50">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -102,13 +102,13 @@ const Contact: React.FC = () => {
           viewport={{ once: true, amount: 0.2 }}
         >
           {/* Header */}
-          <motion.div variants={itemVariants} className="text-center mb-20">
-            <h2 className="text-5xl lg:text-7xl font-black tracking-tight mb-8 leading-none">
+          <motion.div variants={itemVariants} className="text-center mb-12 sm:mb-16 lg:mb-20">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight mb-6 sm:mb-8 leading-none">
               Let&apos;s work
               <br />
               <span className="text-red-500">together</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto px-4">
               I&apos;m currently available for freelance projects and exciting collaborations. 
               Let&apos;s create something amazing together.
             </p>
@@ -116,7 +116,7 @@ const Contact: React.FC = () => {
             {/* CTA Button */}
             <motion.button
               onClick={scrollToForm}
-              className="mt-8 bg-red-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-red-600 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+              className="mt-6 sm:mt-8 bg-red-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-red-600 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -124,12 +124,12 @@ const Contact: React.FC = () => {
             </motion.button>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-24 items-start">
             {/* Contact Info */}
-            <motion.div variants={itemVariants} className="space-y-12">
+            <motion.div variants={itemVariants} className="space-y-8 sm:space-y-12">
               <div>
-                <h3 className="text-2xl font-bold mb-8">Get in touch</h3>
-                <div className="space-y-8">
+                <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">Get in touch</h3>
+                <div className="space-y-6 sm:space-y-8">
                   <motion.div 
                     className="group"
                     whileHover={{ x: 10 }}
@@ -138,7 +138,7 @@ const Contact: React.FC = () => {
                     <h4 className="font-semibold text-gray-900 mb-2 group-hover:text-red-500 transition-colors">Email</h4>
                     <a 
                       href="mailto:business@alwaysbedream.dev"
-                      className="text-lg text-gray-600 hover:text-gray-900 transition-colors"
+                      className="text-base sm:text-lg text-gray-600 hover:text-gray-900 transition-colors break-all sm:break-normal"
                     >
                       business@alwaysbedream.dev
                     </a>
@@ -150,7 +150,7 @@ const Contact: React.FC = () => {
                     transition={{ duration: 0.3 }}
                   >
                     <h4 className="font-semibold text-gray-900 mb-2 group-hover:text-red-500 transition-colors">Phone</h4>
-                    <p className="text-lg text-gray-600">+62 000-000-0000</p>
+                    <p className="text-base sm:text-lg text-gray-600">+62 000-000-0000</p>
                   </motion.div>
 
                   <motion.div 
@@ -159,7 +159,7 @@ const Contact: React.FC = () => {
                     transition={{ duration: 0.3 }}
                   >
                     <h4 className="font-semibold text-gray-900 mb-2 group-hover:text-red-500 transition-colors">Location</h4>
-                    <p className="text-lg text-gray-600">Malang, Indonesia</p>
+                    <p className="text-base sm:text-lg text-gray-600">Malang, Indonesia</p>
                   </motion.div>
                 </div>
               </div>
@@ -185,12 +185,12 @@ const Contact: React.FC = () => {
             <motion.div 
               id="contact-form"
               variants={itemVariants} 
-              className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 lg:p-10 shadow-2xl border border-white/40"
+              className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl border border-white/40"
             >
-              <h3 className="text-2xl font-bold mb-8">Send me a message</h3>
+              <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">Send me a message</h3>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-3">
                       Name
@@ -201,7 +201,7 @@ const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-4 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all text-gray-900 placeholder-gray-500"
+                      className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all text-gray-900 placeholder-gray-500"
                       placeholder="Your name"
                     />
                   </div>
@@ -216,7 +216,7 @@ const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-4 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all text-gray-900 placeholder-gray-500"
+                      className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all text-gray-900 placeholder-gray-500"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -232,14 +232,14 @@ const Contact: React.FC = () => {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-4 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all resize-none text-gray-900 placeholder-gray-500"
+                    className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all resize-none text-gray-900 placeholder-gray-500"
                     placeholder="Tell me about your project, timeline, and budget..."
                   />
                 </div>
 
                 <motion.button
                   type="submit"
-                  className="w-full bg-black text-white py-4 rounded-xl font-semibold text-lg hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="w-full bg-black text-white py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl"
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >

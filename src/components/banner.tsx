@@ -44,7 +44,7 @@ const Hero: React.FC = () => {
   }
 
   return (
-    <section className="min-h-screen flex items-center pt-20 px-8 lg:px-16 relative overflow-hidden bg-white">
+    <section className="min-h-screen flex items-center pt-16 sm:pt-20 px-4 sm:px-6 lg:px-8 xl:px-16 relative overflow-hidden bg-white">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated background shapes */}
@@ -76,7 +76,7 @@ const Hero: React.FC = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10"
+        className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10"
       >
         {/* Left Content */}
         <div className="space-y-8">
@@ -88,25 +88,25 @@ const Hero: React.FC = () => {
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <p className="text-lg text-gray-600 mb-4">Hello World, I am</p>
-            <h1 className="text-6xl lg:text-8xl font-black tracking-tight leading-none">
+            <p className="text-base sm:text-lg text-gray-600 mb-4">Hello World, I am</p>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-none">
               <span className="text-black">aji</span>
               <span className="text-red-500">.</span>
             </h1>
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <p className="text-xl lg:text-2xl text-gray-700 max-w-lg leading-relaxed">
+            <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 max-w-lg leading-relaxed">
               I am a <span className="font-semibold text-black">full-stack developer</span> during daytime
-              <br />
-              & work with <span className="font-semibold text-black">blockchain</span> during nights.
+              <br className="hidden sm:block" />
+              <span className="sm:hidden"> </span>& work with <span className="font-semibold text-black">blockchain</span> during nights.
             </p>
           </motion.div>
 
           <motion.div variants={itemVariants}>
             <button
               onClick={handleContactClick}
-              className="bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-800 transition-colors text-lg"
+              className="bg-black text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-gray-800 transition-colors text-base sm:text-lg"
             >
               schedule free consultation
             </button>
@@ -115,19 +115,19 @@ const Hero: React.FC = () => {
           {/* Contact Info */}
           <motion.div 
             variants={itemVariants}
-            className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-200"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-8 border-t border-gray-200"
           >
             <div>
               <h4 className="font-semibold text-sm text-gray-900 mb-1">Email</h4>
-              <p className="text-sm text-gray-600">business@alwaysbedream.dev</p>
+              <p className="text-xs sm:text-sm text-gray-600 break-all sm:break-normal">business@alwaysbedream.dev</p>
             </div>
             <div>
               <h4 className="font-semibold text-sm text-gray-900 mb-1">Phone</h4>
-              <p className="text-sm text-gray-600">+62 000-000-0000</p>
+              <p className="text-xs sm:text-sm text-gray-600">+62 000-000-0000</p>
             </div>
             <div>
               <h4 className="font-semibold text-sm text-gray-900 mb-1">Location</h4>
-              <p className="text-sm text-gray-600">Malang, Indonesia</p>
+              <p className="text-xs sm:text-sm text-gray-600">Malang, Indonesia</p>
             </div>
           </motion.div>
         </div>
@@ -135,13 +135,13 @@ const Hero: React.FC = () => {
         {/* Right Visual */}
         <motion.div 
           variants={itemVariants}
-          className="relative flex items-center justify-center"
+          className="relative flex items-center justify-center order-first lg:order-last"
         >
           {/* Large graphic element inspired by the designs */}
           <div className="relative">
             {/* Background shapes */}
             <motion.div
-              className="absolute inset-0 w-96 h-96 bg-gradient-to-br from-gray-900 via-gray-700 to-black rounded-full opacity-90"
+              className="absolute inset-0 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-gray-900 via-gray-700 to-black rounded-full opacity-90"
               animate={{
                 rotate: [0, 360],
                 scale: [1, 1.1, 1],
@@ -223,7 +223,7 @@ const Hero: React.FC = () => {
             </motion.div>
 
             {/* Profile placeholder */}
-            <div className="relative z-10 w-80 h-80 rounded-full overflow-hidden shadow-2xl">
+            <div className="relative z-10 w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl">
               <div className="w-full h-full bg-transparent from-gray-300 to-gray-500 flex items-center justify-center">
                 {/* <div className="text-6xl">👨‍💻</div> */}
               </div>

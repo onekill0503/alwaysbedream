@@ -2,8 +2,10 @@ import { MotionDiv, AnimatePresence } from './components/motion'
 import { useState, useEffect } from 'react'
 import Header from './components/header'
 import Banner from './components/banner'
-import Experience from './components/experience'
 import About from './components/about'
+import Experience from './components/experience'
+import Portfolio from './components/portfolio'
+// import Blog from './components/blog'
 import Contact from './components/contact'
 import Loading from './components/loading'
 import { SmoothCursor } from './components/ui/smooth-cursor'
@@ -57,8 +59,10 @@ function App() {
             
             <main>
               <Banner />
-              <Experience />
               <About />
+              <Experience />
+              <Portfolio />
+              {/* <Blog /> */}
               <Contact />
             </main>
 
