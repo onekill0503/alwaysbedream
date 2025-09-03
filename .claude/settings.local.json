@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(D:\\Workdir\\alwaysbedream/**)",
+      "Read(D:\\Workdir\\alwaysbedream/**)",
+      "Read(D:\\Workdir\\alwaysbedream\\pages/**)",
+      "Read(D:\\Workdir\\alwaysbedream\\components/**)",
+      "Read(D:\\Workdir\\alwaysbedream\\public/**)",
+      "Read(D:\\Workdir\\alwaysbedream\\pages/**)",
+      "Read(D:\\Workdir\\alwaysbedream\\pages/**)",
+      "Bash(bun add:*)",
+      "Bash(bunx tailwindcss init:*)",
+      "Bash(bun x tailwindcss init:*)",
+      "Bash(./node_modules/.bin/tailwindcss:*)",
+      "Read(D:\\Workdir\\alwaysbedream/**)",
+      "Read(D:\\Workdir\\alwaysbedream\\styles/**)",
+      "Bash(bun:*)",
+      "Read(D:\\Workdir\\alwaysbedream\\lib/**)",
+      "Read(D:\\Workdir\\alwaysbedream\\lib/**)",
+      "Read(D:\\Workdir\\alwaysbedream\\pages/**)",
+      "Read(D:\\Workdir\\alwaysbedream\\pages/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
