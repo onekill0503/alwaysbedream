@@ -109,19 +109,15 @@ const Hero: React.FC = () => {
           {/* Contact Info */}
           <motion.div 
             variants={itemVariants}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-8 border-t border-gray-200"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 pt-8 border-t border-gray-200"
           >
             <div>
               <h4 className="font-semibold text-sm text-gray-900 mb-1">Email</h4>
               <p className="text-xs sm:text-sm text-gray-600 break-all sm:break-normal">business@alwaysbedream.dev</p>
             </div>
             <div>
-              <h4 className="font-semibold text-sm text-gray-900 mb-1">Phone</h4>
-              <p className="text-xs sm:text-sm text-gray-600">+62 000-000-0000</p>
-            </div>
-            <div>
               <h4 className="font-semibold text-sm text-gray-900 mb-1">Location</h4>
-              <p className="text-xs sm:text-sm text-gray-600">Malang, Indonesia</p>
+              <p className="text-xs sm:text-sm text-gray-600">Lampung, Indonesia</p>
             </div>
           </motion.div>
         </div>

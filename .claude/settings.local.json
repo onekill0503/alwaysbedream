@@ -18,7 +18,18 @@
       "Read(D:\\Workdir\\alwaysbedream\\lib/**)",
       "Read(D:\\Workdir\\alwaysbedream\\lib/**)",
       "Read(D:\\Workdir\\alwaysbedream\\pages/**)",
-      "Read(D:\\Workdir\\alwaysbedream\\pages/**)"
+      "Read(D:\\Workdir\\alwaysbedream\\pages/**)",
+      "Bash(find:*)",
+      "Bash(bunx --bun vite build:*)",
+      "Bash(bunx --bun tsc:*)",
+      "Bash(gh api:*)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:opengraph.githubassets.com)",
+      "WebFetch(domain:brittanychiang.com)",
+      "WebFetch(domain:leerob.io)",
+      "WebFetch(domain:www.linkedin.com)",
+      "WebFetch(domain:www.zoominfo.com)"
     ],
     "deny": [],
     "ask": []

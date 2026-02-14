@@ -15,10 +15,9 @@ const Header = () => {
   }
 
   const navItems = [
-    { name: 'portfolio', target: 'work' },
     { name: 'about me', target: 'about' },
-    { name: 'my blog', target: 'blog' },
-    { name: 'reviews', target: 'reviews' },
+    { name: 'experience', target: 'experience' },
+    { name: 'portfolio', target: 'portfolio' },
     { name: 'contact me', target: 'contact' },
   ]
 

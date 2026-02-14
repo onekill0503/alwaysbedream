@@ -147,6 +147,8 @@ export const ProductCard = ({
           src={product.thumbnail}
           height="600"
           width="600"
+          loading="lazy"
+          decoding="async"
           className="object-cover object-left-top absolute h-full w-full inset-0"
           alt={product.title}
         />

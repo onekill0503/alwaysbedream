@@ -144,22 +144,13 @@ const Contact: React.FC = () => {
                     </a>
                   </motion.div>
                   
-                  <motion.div 
-                    className="group"
-                    whileHover={{ x: 10 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <h4 className="font-semibold text-gray-900 mb-2 group-hover:text-red-500 transition-colors">Phone</h4>
-                    <p className="text-base sm:text-lg text-gray-600">+62 000-000-0000</p>
-                  </motion.div>
-
-                  <motion.div 
+                  <motion.div
                     className="group"
                     whileHover={{ x: 10 }}
                     transition={{ duration: 0.3 }}
                   >
                     <h4 className="font-semibold text-gray-900 mb-2 group-hover:text-red-500 transition-colors">Location</h4>
-                    <p className="text-base sm:text-lg text-gray-600">Malang, Indonesia</p>
+                    <p className="text-base sm:text-lg text-gray-600">Lampung, Indonesia</p>
                   </motion.div>
                 </div>
               </div>

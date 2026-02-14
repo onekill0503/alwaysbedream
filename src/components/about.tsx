@@ -4,7 +4,7 @@ import { IconCloud } from './magicui/icon-cloud'
 const About: React.FC = () => {
   const slugs: string[] = [
     "typescript",
-    "javascript", 
+    "javascript",
     "react",
     "nextdotjs",
     "nodedotjs",
@@ -13,21 +13,22 @@ const About: React.FC = () => {
     "mongodb",
     "prisma",
     "tailwindcss",
-    "framermotion",
-    "vercel",
+    "docker",
+    "kubernetes",
+    "linux",
     "git",
     "github",
-    "visualstudiocode",
-    "figma",
-    "docker",
-    "aws",
+    "githubactions",
     "solidity",
     "ethereum",
-    "docker",
-    "vault",
-    "kubernetes",
+    "foundry",
+    "rust",
+    "python",
+    "php",
+    "laravel",
     "bun",
-    "hono"
+    "hono",
+    "vercel",
   ]
 
   const images: string[] = slugs.map(
@@ -65,23 +66,28 @@ const About: React.FC = () => {
           viewport={{ once: true, amount: 0.2 }}
         >
           <motion.div variants={itemVariants} className="mb-12 lg:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">About</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4">
+              About
+              <br />
+              <span className="text-gray-400">Me</span>
+            </h2>
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
               <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-gray-600 leading-relaxed">
                 <p>
-                  I&apos;m a full-stack developer passionate about creating exceptional 
-                  digital experiences. With 5+ years in the industry, I&apos;ve worked 
-                  with startups and established brands across various sectors.
+                  Backend developer and DevOps engineer with <span className="font-semibold text-gray-900">6+ years</span> of
+                  hands-on experience. I build web applications during the day and
+                  write smart contracts at night.
                 </p>
                 <p>
-                  My expertise spans modern web technologies and blockchain development. 
-                  I particularly enjoy the intersection of traditional web development 
-                  and emerging Web3 technologies.
+                  My core stack revolves around <span className="font-semibold text-gray-900">TypeScript</span>, <span className="font-semibold text-gray-900">Node.js</span>,
+                  and <span className="font-semibold text-gray-900">Solidity</span> — with deep knowledge in DevOps,
+                  database management, and blockchain infrastructure. I&apos;m adaptable,
+                  always eager to pick up new technologies and push them to production.
                 </p>
                 <p>
-                  Currently based in Malang, Indonesia, I work with clients 
-                  globally, bringing innovative ideas to life through clean, 
-                  performant code.
+                  Based in Indonesia, I thrive in both structured company environments
+                  and fast-paced open-source communities. I believe great software comes
+                  from clean architecture, reliable pipelines, and code that speaks for itself.
                 </p>
               </div>
               
