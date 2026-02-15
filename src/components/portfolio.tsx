@@ -222,13 +222,13 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mt-12 sm:mt-16 w-full overflow-x-auto"
+          className="mt-12 sm:mt-16 w-full overflow-x-auto scrollbar-hide"
         >
           <iframe
             src="https://jandee.vercel.app/onekill0503?scheme=light&weeks=true&footer=true&margin=3&redias=2"
             width="100%"
             height="170"
-            style={{ border: 'none', minWidth: '700px' }}
+            style={{ border: 'none', minWidth: '600px' }}
             title="GitHub Contributions"
             loading="lazy"
           />

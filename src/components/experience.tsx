@@ -99,8 +99,8 @@ export default function Experience() {
   }
 
   return (
-    <section id="experience" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
+    <section id="experience" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="max-w-6xl mx-auto overflow-hidden">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -120,7 +120,7 @@ export default function Experience() {
           </p>
 
           {/* Filter tabs */}
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {(['all', 'work', 'community'] as FilterType[]).map((f) => (
               <button
                 key={f}
@@ -146,10 +146,10 @@ export default function Experience() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid lg:grid-cols-[320px_1fr] gap-6 lg:gap-0"
+          className="grid lg:grid-cols-[320px_1fr] gap-6 lg:gap-0 overflow-hidden"
         >
           {/* Left: Scrollable role list */}
-          <div className="lg:border-r border-gray-200 lg:pr-0">
+          <div className="lg:border-r border-gray-200 lg:pr-0 min-w-0">
             <div className="flex lg:flex-col gap-3 lg:gap-0 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 scrollbar-hide">
               {filtered.map((exp, i) => {
                 const isActive = i === activeIndex
@@ -198,7 +198,7 @@ export default function Experience() {
           </div>
 
           {/* Right: Detail panel */}
-          <div className="lg:pl-10 min-h-[360px]">
+          <div className="lg:pl-10 min-h-[280px] sm:min-h-[360px] min-w-0 overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.div
                 key={`${active.company}-${active.period}`}
@@ -229,10 +229,10 @@ export default function Experience() {
                 </div>
 
                 {/* Role + Company */}
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-1">
                   {active.role}
                 </h3>
-                <p className="text-lg text-gray-500 mb-6">{active.company}</p>
+                <p className="text-base sm:text-lg text-gray-500 mb-6 break-words">{active.company}</p>
 
                 {/* Description */}
                 <p className="text-base text-gray-600 leading-relaxed mb-6 max-w-xl">
@@ -245,7 +245,7 @@ export default function Experience() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.15 }}
-                    className="inline-flex items-center gap-2.5 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 mb-6"
+                    className="inline-flex items-center gap-2.5 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 mb-6 max-w-full"
                   >
                     <svg className="w-5 h-5 text-amber-500 shrink-0" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />

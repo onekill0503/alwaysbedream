@@ -71,7 +71,7 @@ const Contact: React.FC = () => {
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute w-96 h-96 bg-gradient-to-br from-red-200/40 to-pink-200/40 rounded-full blur-3xl"
+          className="absolute w-64 h-64 sm:w-96 sm:h-96 bg-gradient-to-br from-red-200/40 to-pink-200/40 rounded-full blur-3xl"
           animate={{
             x: mousePosition.x * 0.03,
             y: mousePosition.y * 0.03,
@@ -82,7 +82,7 @@ const Contact: React.FC = () => {
           }}
         />
         <motion.div
-          className="absolute w-80 h-80 bg-gradient-to-br from-purple-200/40 to-blue-200/40 rounded-full blur-2xl"
+          className="absolute w-56 h-56 sm:w-80 sm:h-80 bg-gradient-to-br from-purple-200/40 to-blue-200/40 rounded-full blur-2xl"
           animate={{
             x: mousePosition.x * -0.02,
             y: mousePosition.y * -0.02,

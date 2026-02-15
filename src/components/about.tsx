@@ -57,8 +57,8 @@ const About: React.FC = () => {
   }
 
   return (
-    <section id="about" className="py-16 sm:py-20 lg:py-24">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-16 sm:py-20 lg:py-24 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -72,7 +72,7 @@ const About: React.FC = () => {
               <span className="text-gray-400">Me</span>
             </h2>
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-              <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-gray-600 leading-relaxed">
+              <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-gray-600 leading-relaxed break-words">
                 <p>
                   Backend developer and DevOps engineer with <span className="font-semibold text-gray-900">6+ years</span> of
                   hands-on experience. I build web applications during the day and

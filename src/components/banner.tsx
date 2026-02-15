@@ -49,7 +49,7 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated background shapes */}
         <motion.div
-          className="absolute w-96 h-96 bg-gradient-to-br from-pink-100 to-red-100 rounded-full blur-3xl opacity-70"
+          className="absolute w-64 h-64 sm:w-96 sm:h-96 bg-gradient-to-br from-pink-100 to-red-100 rounded-full blur-3xl opacity-70"
           animate={{
             x: mousePosition.x * 0.02,
             y: mousePosition.y * 0.02,
@@ -60,7 +60,7 @@ const Hero: React.FC = () => {
           }}
         />
         <motion.div
-          className="absolute w-80 h-80 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full blur-2xl opacity-50"
+          className="absolute w-56 h-56 sm:w-80 sm:h-80 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full blur-2xl opacity-50"
           animate={{
             x: mousePosition.x * -0.03,
             y: mousePosition.y * -0.03,
@@ -79,7 +79,7 @@ const Hero: React.FC = () => {
         className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10"
       >
         {/* Left Content */}
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
 
           <motion.div variants={itemVariants}>
             <p className="text-base sm:text-lg text-gray-600 mb-4">Hello World, I am</p>
@@ -123,15 +123,15 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Right Visual */}
-        <motion.div 
+        <motion.div
           variants={itemVariants}
-          className="relative flex items-center justify-center order-first lg:order-last"
+          className="relative flex items-center justify-center"
         >
           {/* Large graphic element inspired by the designs */}
           <div className="relative">
             {/* Background shapes */}
             <motion.div
-              className="absolute inset-0 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-gray-900 via-gray-700 to-black rounded-full opacity-90"
+              className="absolute inset-0 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-gray-900 via-gray-700 to-black rounded-full opacity-90"
               animate={{
                 rotate: [0, 360],
                 scale: [1, 1.1, 1],
@@ -144,8 +144,8 @@ const Hero: React.FC = () => {
             
             {/* Decorative elements */}
             <motion.div
-              className="absolute top-16 right-16 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-lg"
-              animate={{ 
+              className="absolute top-10 right-10 sm:top-16 sm:right-16 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold shadow-lg"
+              animate={{
                 y: [0, -10, 0],
                 rotate: [0, 5, 0]
               }}
@@ -153,10 +153,10 @@ const Hero: React.FC = () => {
             >
               EVM
             </motion.div>
-            
+
             <motion.div
-              className="absolute bottom-20 left-12 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-lg"
-              animate={{ 
+              className="absolute bottom-14 left-8 sm:bottom-20 sm:left-12 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold shadow-lg"
+              animate={{
                 y: [0, 10, 0],
                 rotate: [0, -3, 0]
               }}
@@ -164,10 +164,10 @@ const Hero: React.FC = () => {
             >
               De-Fi
             </motion.div>
-            
+
             <motion.div
-              className="absolute top-1/3 -right-8 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-lg"
-              animate={{ 
+              className="hidden sm:block absolute top-1/3 -right-8 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-lg"
+              animate={{
                 x: [0, 10, 0],
                 rotate: [0, 3, 0]
               }}
@@ -175,10 +175,10 @@ const Hero: React.FC = () => {
             >
               Cloud
             </motion.div>
-            
+
             <motion.div
-              className="absolute bottom-1/3 -left-4 bg-gradient-to-r from-red-500 to-orange-500 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-lg"
-              animate={{ 
+              className="hidden sm:block absolute bottom-1/3 -left-4 bg-gradient-to-r from-red-500 to-orange-500 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-lg"
+              animate={{
                 x: [0, -10, 0],
                 rotate: [0, -5, 0]
               }}
@@ -189,8 +189,8 @@ const Hero: React.FC = () => {
 
             {/* Additional floating elements */}
             <motion.div
-              className="absolute top-24 left-20 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-md"
-              animate={{ 
+              className="hidden sm:block absolute top-24 left-20 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-md"
+              animate={{
                 y: [0, -8, 0],
                 x: [0, 5, 0],
                 rotate: [0, 10, 0]
@@ -199,10 +199,10 @@ const Hero: React.FC = () => {
             >
               Smart Contracts
             </motion.div>
-            
+
             <motion.div
-              className="absolute bottom-32 right-20 bg-gradient-to-r from-pink-500 to-rose-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-md"
-              animate={{ 
+              className="hidden sm:block absolute bottom-32 right-20 bg-gradient-to-r from-pink-500 to-rose-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-md"
+              animate={{
                 y: [0, 8, 0],
                 x: [0, -5, 0],
                 rotate: [0, -8, 0]
@@ -213,7 +213,7 @@ const Hero: React.FC = () => {
             </motion.div>
 
             {/* Profile placeholder */}
-            <div className="relative z-10 w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl">
+            <div className="relative z-10 w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl">
               <div className="w-full h-full bg-transparent from-gray-300 to-gray-500 flex items-center justify-center">
                 {/* <div className="text-6xl">👨‍💻</div> */}
               </div>

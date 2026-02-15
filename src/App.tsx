@@ -12,7 +12,7 @@ const Contact = lazy(() => import('./components/contact'))
 function App() {
   return (
     <div className="min-h-screen">
-      <ScrollProgress className="top-20 h-0.5 z-[60]" />
+      <ScrollProgress className="top-[56px] sm:top-[76px] h-0.5 z-[60]" />
       <Header />
 
       <main>
