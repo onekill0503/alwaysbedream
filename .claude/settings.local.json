@@ -29,7 +29,8 @@
       "WebFetch(domain:brittanychiang.com)",
       "WebFetch(domain:leerob.io)",
       "WebFetch(domain:www.linkedin.com)",
-      "WebFetch(domain:www.zoominfo.com)"
+      "WebFetch(domain:www.zoominfo.com)",
+      "WebFetch(domain:contributions.okcode.club)"
     ],
     "deny": [],
     "ask": []
