@@ -72,7 +72,7 @@ const About: React.FC = () => {
               <span className="text-gray-400">Me</span>
             </h2>
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-              <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-gray-600 leading-relaxed break-words">
+              <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-gray-600 leading-relaxed break-words min-w-0">
                 <p>
                   Backend developer and DevOps engineer with <span className="font-semibold text-gray-900">6+ years</span> of
                   hands-on experience. I build web applications during the day and
@@ -91,7 +91,7 @@ const About: React.FC = () => {
                 </p>
               </div>
               
-              <div>
+              <div className="min-w-0">
                 <div className="relative flex h-64 sm:h-72 lg:h-80 w-full items-center justify-center overflow-hidden">
                   <IconCloud images={images} />
                 </div>
