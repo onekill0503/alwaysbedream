@@ -2,7 +2,7 @@ import Header from './components/header'
 import Hero from './components/hero'
 import About from './components/about'
 import Experience from './components/experience'
-import Portfolio from './components/portfolio'
+import Work from './components/work'
 import Contact from './components/contact'
 import { ScrollProgress } from './components/magicui/scroll-progress'
 import { SpeedInsights } from '@vercel/speed-insights/react'
@@ -17,7 +17,7 @@ function App() {
         <Hero />
         <About />
         <Experience />
-        <Portfolio />
+        <Work />
         <Contact />
       </main>
 
