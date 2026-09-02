@@ -9,6 +9,41 @@ export const profile = {
   availability: 'Open to freelance',
 }
 
+export interface Segment {
+  text: string
+  strong?: boolean
+}
+
+export const about = {
+  /**
+   * Promoted out of the middle of the old third paragraph. It is the most
+   * human sentence on the site, so it leads the section.
+   */
+  lead: {
+    before: 'I build web apps by day and write ',
+    accent: 'smart contracts',
+    after: ' at night.',
+  },
+  paragraphs: [
+    [
+      { text: 'Backend and DevOps by trade — ' },
+      { text: 'six years', strong: true },
+      { text: ' of it. Currently keeping infrastructure, pipelines and databases running at ' },
+      { text: 'BIGIO.ID', strong: true },
+      { text: ' in Malang, Indonesia.' },
+    ],
+    [
+      { text: 'The rest of the time building protocols in hackathons. Core stack is ' },
+      { text: 'TypeScript', strong: true },
+      { text: ', ' },
+      { text: 'Node.js', strong: true },
+      { text: ' and ' },
+      { text: 'Solidity', strong: true },
+      { text: '.' },
+    ],
+  ] as Segment[][],
+}
+
 export const links = {
   github: `https://github.com/${githubUser}`,
   linkedin: 'https://www.linkedin.com/in/aji-dwi-prasetio/',

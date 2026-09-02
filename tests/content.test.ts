@@ -1,5 +1,6 @@
 import { expect, test } from 'bun:test'
 import {
+  about,
   alsoBuilt,
   contactSection,
   experience,
@@ -86,4 +87,26 @@ test('stack is six labelled rows', () => {
 
 test('availability is freelance wording', () => {
   expect(profile.availability).toBe('Open to freelance')
+})
+
+test('about copy matches the spec and drops the generic paragraph', () => {
+  expect(about.lead.accent).toBe('smart contracts')
+  expect(about.paragraphs).toHaveLength(2)
+
+  const flat = about.paragraphs.map((segments) =>
+    segments.map((segment) => segment.text).join(''),
+  )
+
+  // "6+ years" became plainly "six years"; the employer is now named.
+  expect(flat[0]).toContain('six years')
+  expect(flat[0]).toContain('BIGIO.ID')
+  expect(flat.join(' ')).not.toContain('6+')
+  expect(flat.join(' ').toLowerCase()).not.toContain('thrive')
+
+  // Every emphasised run must be non-empty, or it renders as an empty <strong>.
+  for (const segments of about.paragraphs) {
+    for (const segment of segments) {
+      expect(segment.text.length).toBeGreaterThan(0)
+    }
+  }
 })
