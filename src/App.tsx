@@ -1,13 +1,11 @@
-import { lazy, Suspense } from 'react'
 import Header from './components/header'
-import Banner from './components/banner'
+import Hero from './components/hero'
+import About from './components/about'
+import Experience from './components/experience'
+import Portfolio from './components/portfolio'
+import Contact from './components/contact'
 import { ScrollProgress } from './components/magicui/scroll-progress'
 import { SpeedInsights } from '@vercel/speed-insights/react'
-
-const About = lazy(() => import('./components/about'))
-const Experience = lazy(() => import('./components/experience'))
-const Portfolio = lazy(() => import('./components/portfolio'))
-const Contact = lazy(() => import('./components/contact'))
 
 function App() {
   return (
@@ -16,13 +14,11 @@ function App() {
       <Header />
 
       <main>
-        <Banner />
-        <Suspense>
-          <About />
-          <Experience />
-          <Portfolio />
-          <Contact />
-        </Suspense>
+        <Hero />
+        <About />
+        <Experience />
+        <Portfolio />
+        <Contact />
       </main>
 
       <footer className="py-12 border-t border-gray-200">
