@@ -1,0 +1,186 @@
+.hero-stack {
+  --iso-scale: 1;
+  position: relative;
+  display: grid;
+  gap: 24px;
+  perspective: 1000px;
+}
+
+.hero-stack__float {
+  position: relative;
+  height: 360px;
+  transform: scale(var(--iso-scale));
+  transform-style: preserve-3d;
+}
+
+.hero-stack__tilt {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.hero-stack__iso {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 142px;
+  height: 142px;
+  margin: -71px 0 0 -71px;
+  transform: rotateX(56deg) rotateZ(-45deg);
+  transform-style: preserve-3d;
+}
+
+/* Default state is fully settled: this is what a reduced-motion visitor and
+   a no-JS visitor see. `is-armed` hides it so the build has somewhere to go. */
+.hero-stack__layer {
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid var(--ink);
+  border-radius: 2px;
+  background: var(--layer-fill);
+}
+.hero-stack__layer--0 { transform: translateZ(80px); }
+.hero-stack__layer--1 { transform: translateZ(27px); }
+.hero-stack__layer--2 { transform: translateZ(-27px); }
+.hero-stack__layer--3 { transform: translateZ(-80px); }
+
+.hero-stack__packet {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 13px;
+  height: 13px;
+  margin: -6.5px 0 0 -6.5px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 18px 4px var(--layer-flash);
+  opacity: 0;
+}
+
+.hero-stack__legend {
+  display: grid;
+  gap: 9px;
+  list-style: none;
+}
+
+.hero-stack__legend-row {
+  display: grid;
+  grid-template-columns: 108px 1fr;
+  gap: 14px;
+  align-items: baseline;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+}
+.hero-stack__legend-name {
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.hero-stack__legend-tech {
+  color: var(--fade);
+  letter-spacing: 0.02em;
+}
+
+.hero-stack.is-armed .hero-stack__layer,
+.hero-stack.is-armed .hero-stack__legend-row {
+  opacity: 0;
+}
+
+.hero-stack.is-running .hero-stack__layer--0 { animation: heroLayer0 4.4s linear 1 forwards; }
+.hero-stack.is-running .hero-stack__layer--1 { animation: heroLayer1 4.4s linear 1 forwards; }
+.hero-stack.is-running .hero-stack__layer--2 { animation: heroLayer2 4.4s linear 1 forwards; }
+.hero-stack.is-running .hero-stack__layer--3 { animation: heroLayer3 4.4s linear 1 forwards; }
+.hero-stack.is-running .hero-stack__packet { animation: heroPacket 4.4s linear 1 forwards; }
+.hero-stack.is-running .hero-stack__legend-row--0 { animation: heroLegend0 4.4s linear 1 forwards; }
+.hero-stack.is-running .hero-stack__legend-row--1 { animation: heroLegend1 4.4s linear 1 forwards; }
+.hero-stack.is-running .hero-stack__legend-row--2 { animation: heroLegend2 4.4s linear 1 forwards; }
+.hero-stack.is-running .hero-stack__legend-row--3 { animation: heroLegend3 4.4s linear 1 forwards; }
+
+/* Idle float starts exactly as the build ends (4.4s delay), and lives on a
+   different element from the tilt so the two never fight. */
+.hero-stack.is-running .hero-stack__float {
+  animation: heroFloat 7s ease-in-out 4.4s infinite;
+}
+
+@keyframes heroLayer0 {
+  0%, 62% { opacity: 0; transform: translateZ(80px) scale(0.9); border-color: var(--red); background: var(--layer-flash); }
+  68%     { opacity: 1; transform: translateZ(80px) scale(1.06); border-color: var(--red); background: var(--layer-flash); }
+  77%     { opacity: 1; transform: translateZ(80px) scale(1); border-color: var(--ink); background: var(--layer-fill); }
+  100%    { opacity: 1; transform: translateZ(80px) scale(1); border-color: var(--ink); background: var(--layer-fill); }
+}
+@keyframes heroLayer1 {
+  0%, 46% { opacity: 0; transform: translateZ(27px) scale(0.9); border-color: var(--red); background: var(--layer-flash); }
+  52%     { opacity: 1; transform: translateZ(27px) scale(1.06); border-color: var(--red); background: var(--layer-flash); }
+  61%     { opacity: 1; transform: translateZ(27px) scale(1); border-color: var(--ink); background: var(--layer-fill); }
+  100%    { opacity: 1; transform: translateZ(27px) scale(1); border-color: var(--ink); background: var(--layer-fill); }
+}
+@keyframes heroLayer2 {
+  0%, 29% { opacity: 0; transform: translateZ(-27px) scale(0.9); border-color: var(--red); background: var(--layer-flash); }
+  35%     { opacity: 1; transform: translateZ(-27px) scale(1.06); border-color: var(--red); background: var(--layer-flash); }
+  44%     { opacity: 1; transform: translateZ(-27px) scale(1); border-color: var(--ink); background: var(--layer-fill); }
+  100%    { opacity: 1; transform: translateZ(-27px) scale(1); border-color: var(--ink); background: var(--layer-fill); }
+}
+@keyframes heroLayer3 {
+  0%, 12% { opacity: 0; transform: translateZ(-80px) scale(0.9); border-color: var(--red); background: var(--layer-flash); }
+  18%     { opacity: 1; transform: translateZ(-80px) scale(1.06); border-color: var(--red); background: var(--layer-flash); }
+  27%     { opacity: 1; transform: translateZ(-80px) scale(1); border-color: var(--ink); background: var(--layer-fill); }
+  100%    { opacity: 1; transform: translateZ(-80px) scale(1); border-color: var(--ink); background: var(--layer-fill); }
+}
+
+/* Pauses at every crossing so the beat is readable. */
+@keyframes heroPacket {
+  0%   { opacity: 0; transform: translateZ(-120px); }
+  6%   { opacity: 1; }
+  14%  { transform: translateZ(-80px); }
+  21%  { transform: translateZ(-80px); }
+  31%  { transform: translateZ(-27px); }
+  38%  { transform: translateZ(-27px); }
+  48%  { transform: translateZ(27px); }
+  55%  { transform: translateZ(27px); }
+  64%  { transform: translateZ(80px); }
+  72%  { opacity: 1; transform: translateZ(80px); }
+  84%  { opacity: 0; transform: translateZ(132px); }
+  100% { opacity: 0; transform: translateZ(132px); }
+}
+
+@keyframes heroLegend0 { 0%, 62% { opacity: 0; } 68%, 100% { opacity: 1; } }
+@keyframes heroLegend1 { 0%, 46% { opacity: 0; } 52%, 100% { opacity: 1; } }
+@keyframes heroLegend2 { 0%, 29% { opacity: 0; } 35%, 100% { opacity: 1; } }
+@keyframes heroLegend3 { 0%, 12% { opacity: 0; } 18%, 100% { opacity: 1; } }
+
+/* Starts and ends at 0 so there is no jump when the float takes over. */
+@keyframes heroFloat {
+  0%   { transform: translateY(0) scale(var(--iso-scale)); }
+  25%  { transform: translateY(-5px) scale(var(--iso-scale)); }
+  75%  { transform: translateY(5px) scale(var(--iso-scale)); }
+  100% { transform: translateY(0) scale(var(--iso-scale)); }
+}
+
+@media (max-width: 1023px) {
+  .hero-stack { --iso-scale: 0.82; }
+  .hero-stack__float { height: 300px; }
+}
+
+@media (max-width: 420px) {
+  .hero-stack { --iso-scale: 0.66; }
+  .hero-stack__float { height: 250px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stack.is-armed .hero-stack__layer,
+  .hero-stack.is-armed .hero-stack__legend-row {
+    opacity: 1;
+  }
+  .hero-stack__float,
+  .hero-stack__layer,
+  .hero-stack__packet,
+  .hero-stack__legend-row {
+    animation: none !important;
+  }
+  .hero-stack__packet { opacity: 0; }
+  .hero-stack__tilt { transition: none; }
+}

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import { HAS_RESUME, links, profile } from '@/content/site'
 import { prefersReducedMotion, scrollToId } from '@/lib/utils'
+import HeroStack from './hero-stack'
 
 const container: Variants = {
   hidden: {},
@@ -72,7 +73,9 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        <motion.div variants={item} className="min-w-0" />
+        <motion.div variants={item} className="min-w-0">
+          <HeroStack />
+        </motion.div>
       </motion.div>
     </section>
   )
