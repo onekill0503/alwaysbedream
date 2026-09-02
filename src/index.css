@@ -76,7 +76,13 @@ body {
 
 /* Sections are scrolled to by id under a fixed header. */
 section[id] {
-  scroll-margin-top: 88px;
+  scroll-margin-top: 104px;
+}
+
+@media (min-width: 640px) {
+  section[id] {
+    scroll-margin-top: 88px;
+  }
 }
 
 ::selection {

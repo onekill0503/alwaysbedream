@@ -1,152 +1,136 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { scroller } from 'react-scroll'
+import { useEffect, useRef, useState } from 'react'
+import { contactSection, profile, sections } from '@/content/site'
+import { scrollToId } from '@/lib/utils'
+import ThemeToggle from './theme-toggle'
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const progressRef = useRef<HTMLDivElement>(null)
+  const [active, setActive] = useState('')
 
-  const goto = (target: string) => {
-    scroller.scrollTo(target, {
-      duration: 800,
-      smooth: true,
-      offset: -100,
-    })
-    setIsMenuOpen(false)
-  }
+  useEffect(() => {
+    let frame = 0
 
-  const navItems = [
-    { name: 'about me', target: 'about' },
-    { name: 'experience', target: 'experience' },
-    { name: 'portfolio', target: 'portfolio' },
-    { name: 'contact me', target: 'contact' },
-  ]
+    const update = () => {
+      frame = 0
+      const bar = progressRef.current
+      if (!bar) return
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      const ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0
+      // Direct style write on a ref, coalesced to one frame. Never setState here.
+      bar.style.transform = `scaleX(${ratio})`
+    }
+
+    const onScroll = () => {
+      if (frame === 0) frame = requestAnimationFrame(update)
+    }
+
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      if (frame !== 0) cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+  }, [])
+
+  useEffect(() => {
+    // Requires every section to be in the DOM at mount — this is why App.tsx
+    // renders the sections eagerly instead of behind lazy()/<Suspense>.
+    const ids = [...sections.map((section) => section.id), contactSection.id]
+    const nodes = ids
+      .map((id) => document.getElementById(id))
+      .filter((node): node is HTMLElement => node !== null)
+    if (nodes.length === 0) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(entry.target.id)
+        }
+      },
+      { rootMargin: '-45% 0px -45% 0px' },
+    )
+
+    nodes.forEach((node) => observer.observe(node))
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <>
-      {/* Top Navigation */}
-      <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-white"
-      >
-        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-          {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold tracking-tight"
-          >
-            aji
-          </motion.div>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-[var(--header-bg)] backdrop-blur-[9px]">
+      <div className="mx-auto flex h-14 max-w-shell items-center justify-between gap-4 px-5 sm:h-[72px] sm:px-6 lg:px-8">
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="font-serif text-[17px] leading-none text-ink transition-opacity hover:opacity-70 sm:text-[19px]"
+        >
+          {profile.name}
+          <span className="text-accent">.</span>
+        </button>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => goto(item.target)}
-                className="text-sm font-medium text-gray-700 hover:text-black transition-colors relative"
-              >
-                {item.name}
-              </button>
-            ))}
-          </nav>
-
-          {/* CTA Button */}
-          <button
-            onClick={() => goto('contact')}
-            className="hidden lg:block bg-red-500 text-white px-4 xl:px-6 py-2 rounded-full text-sm font-medium hover:bg-red-600 transition-colors"
-          >
-            Schedule a Call
-          </button>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden flex flex-col items-center justify-center w-6 h-6 space-y-1"
-          >
-            <span className={`block w-5 h-0.5 bg-black transition-all ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
-            <span className={`block w-5 h-0.5 bg-black transition-all ${isMenuOpen ? 'opacity-0' : ''}`} />
-            <span className={`block w-5 h-0.5 bg-black transition-all ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.nav
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-white border-t px-4 sm:px-6 py-6"
-            >
-              {navItems.map((item) => (
+        <nav aria-label="Sections" className="hidden sm:block">
+          <ul className="flex items-center gap-7">
+            {sections.map((section) => (
+              <li key={section.id}>
                 <button
-                  key={item.name}
-                  onClick={() => goto(item.target)}
-                  className="block w-full text-left py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-gray-100 last:border-0"
+                  type="button"
+                  onClick={() => scrollToId(section.id)}
+                  aria-current={active === section.id ? 'true' : undefined}
+                  className="group flex items-baseline gap-2 font-mono text-[11px] uppercase tracking-[0.1em]"
                 >
-                  {item.name}
+                  <span className={active === section.id ? 'text-accent' : 'text-fade'}>
+                    {section.num}
+                  </span>
+                  <span
+                    className={`transition-colors ${
+                      active === section.id ? 'text-ink' : 'text-mut group-hover:text-ink'
+                    }`}
+                  >
+                    {section.label}
+                  </span>
                 </button>
-              ))}
-              <button
-                onClick={() => goto('contact')}
-                className="w-full mt-4 bg-red-500 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-red-600 transition-colors"
-              >
-                Schedule a Call
-              </button>
-            </motion.nav>
-          )}
-        </AnimatePresence>
-      </motion.header>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-      {/* Side Navigation */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
-        className="fixed left-4 xl:left-8 top-1/2 -translate-y-1/2 z-40 hidden xl:block"
-      >
-        <div className="flex flex-col space-y-6">
-          <button className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-black transition-colors">
-            <span className="sr-only">LinkedIn</span>
-            <a href="https://www.linkedin.com/in/aji-dwi-prasetio/" target="_blank" rel="noreferrer">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-              </svg>
-            </a>
-          </button>
-          
-          <button className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-black transition-colors">
-            <span className="sr-only">GitHub</span>
-            <a href="https://github.com/onekill0503" target="_blank" rel="noreferrer">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </a>
-          </button>
-          
-          <button className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-black transition-colors">
-            <span className="sr-only">Twitter</span>
-            <a href="https://x.com/0xalwaysbedream" target="_blank" rel="noreferrer">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-              </svg>
-            </a>
-          </button>
-          
-          <button className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-black transition-colors">
-            <span className="sr-only">Instagram</span>
-            <a href="https://instagram.com/alwaysbedream" target="_blank" rel="noreferrer">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-            </a>
-          </button>
-          
+        <div className="flex items-center gap-2.5">
+          <ThemeToggle />
+          <a
+            href={`mailto:${profile.email}`}
+            className="rounded-md bg-ink px-3.5 py-2 font-mono text-[10.5px] uppercase tracking-[0.1em] text-paper transition-opacity hover:opacity-85 sm:px-4"
+          >
+            Email me
+          </a>
         </div>
-      </motion.div>
-    </>
+      </div>
+
+      {/* Mobile keeps the nav on a second row rather than dropping it. */}
+      <nav aria-label="Sections" className="border-t border-line sm:hidden">
+        <ul className="mx-auto flex h-9 max-w-shell items-center gap-6 px-5">
+          {[...sections, contactSection].map((section) => (
+            <li key={section.id}>
+              <button
+                type="button"
+                onClick={() => scrollToId(section.id)}
+                aria-current={active === section.id ? 'true' : undefined}
+                className={`font-mono text-[10.5px] uppercase tracking-[0.1em] transition-colors ${
+                  active === section.id ? 'text-accent' : 'text-fade'
+                }`}
+              >
+                {section.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div
+        ref={progressRef}
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-accent"
+      />
+    </header>
   )
 }
 
