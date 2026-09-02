@@ -20,6 +20,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
+      aria-labelledby="hero-title"
       className="relative flex min-h-[92vh] items-center px-5 pb-16 pt-28 sm:px-6 lg:px-8"
     >
       <motion.div
@@ -30,6 +31,7 @@ const Hero = () => {
       >
         <div>
           <motion.h1
+            id="hero-title"
             variants={item}
             className="font-serif text-[clamp(2.75rem,8vw,5.25rem)] font-normal leading-[1.02] tracking-tight text-ink"
           >

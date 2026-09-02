@@ -4,27 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="theme-color" id="theme-color" content="#fbfbfa" />
     <script>
-      // Runs before first paint. React mounts far too late to prevent
-      // the flash. localStorage throws in some privacy modes, hence try/catch.
+      // Runs before first paint. React mounts far too late to prevent the
+      // flash. Only the storage read is wrapped: localStorage throws in some
+      // privacy modes, and a try around the whole block would skip the class
+      // and leave the page light while lib/theme.ts resolved dark.
+      var stored = null;
       try {
-        var stored = localStorage.getItem('theme');
-        var isDark =
-          stored === 'dark' ||
-          (!stored && matchMedia('(prefers-color-scheme: dark)').matches);
-        if (isDark) document.documentElement.classList.add('dark');
-        var meta = document.getElementById('theme-color');
-        if (meta) meta.setAttribute('content', isDark ? '#0f0f11' : '#fbfbfa');
+        stored = localStorage.getItem('theme');
       } catch (e) {}
+      // Must match readStored + resolveTheme in src/lib/theme.ts: only the
+      // exact strings 'dark' and 'light' are explicit choices; anything else
+      // (absent, 'system', a stale value) falls through to the OS setting.
+      var isDark =
+        stored === 'dark' ||
+        (stored !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+      if (isDark) document.documentElement.classList.add('dark');
+      var meta = document.getElementById('theme-color');
+      if (meta) meta.setAttribute('content', isDark ? '#0f0f11' : '#fbfbfa');
     </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Full-stack developer and blockchain enthusiast based in Indonesia. I help brands and startups build exceptional digital experiences with modern web technologies." />
-    <meta name="keywords" content="full-stack developer, web developer, blockchain, freelance, React, Next.js, Indonesia" />
+    <!-- This block is the copy that appears in search results and link
+         previews. Keep it in step with `profile` in src/content/site.ts. -->
+    <meta name="description" content="Backend and DevOps engineer in Malang, Indonesia. Six years keeping APIs, pipelines and infrastructure running — and writing smart contracts after hours." />
+    <meta name="keywords" content="backend engineer, devops engineer, smart contracts, solidity, typescript, node.js, freelance, Indonesia" />
     <meta name="author" content="Aji Dwi Prastio" />
-    
+
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Aji Dwi Prastio — Full-Stack Developer" />
-    <meta property="og:description" content="Full-stack developer and blockchain enthusiast based in Indonesia." />
+    <meta property="og:title" content="Aji Dwi Prastio — Backend &amp; DevOps Engineer" />
+    <meta property="og:description" content="Backend and DevOps engineer in Malang, Indonesia. Smart contracts after hours." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://alwaysbedream.dev" />
     
@@ -33,7 +41,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" /></noscript>
-    <title>Aji Dwi Prastio — Full-Stack Developer</title>
+    <title>Aji Dwi Prastio — Backend &amp; DevOps Engineer</title>
   </head>
   <body>
     <div id="root"></div>

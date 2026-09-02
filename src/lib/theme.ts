@@ -41,6 +41,14 @@ let currentTheme: Theme = readStored()
 let snapshot = `${currentTheme}|${resolveTheme(currentTheme)}`
 const listeners = new Set<() => void>()
 
+// The bootstrap in index.html normally has the class on already, so this is a
+// no-op. It matters when that script could not read localStorage: this module
+// would resolve 'system' -> 'dark' while the document stayed light, and every
+// consumer of `resolved` (the contributions iframe, the toggle icon) would
+// disagree with what is on screen until the second click. Runs at import,
+// before React renders.
+applyToDocument(resolveTheme(currentTheme))
+
 function refresh(): void {
   const next = `${currentTheme}|${resolveTheme(currentTheme)}`
   if (next === snapshot) return

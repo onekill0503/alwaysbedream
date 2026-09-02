@@ -17,9 +17,26 @@ export function prefersReducedMotion(): boolean {
 }
 
 /**
+ * An explicit `behavior` overrides the `scroll-behavior` declared in CSS, so
+ * the reduced-motion rule in index.css cannot reach these calls on its own.
+ * Without this the nav buttons would smooth-scroll for a visitor who asked
+ * for no motion, while the plain `#work` anchors honoured the CSS — the same
+ * page scrolling two different ways depending on which control was used.
+ */
+function scrollBehavior(): ScrollBehavior {
+  return prefersReducedMotion() ? 'auto' : 'smooth'
+}
+
+/**
  * Scrolls to a section by id. Offset comes from `scroll-margin-top` in
  * index.css, so header height is not duplicated in JS.
  */
 export function scrollToId(id: string): void {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  document
+    .getElementById(id)
+    ?.scrollIntoView({ behavior: scrollBehavior(), block: 'start' })
+}
+
+export function scrollToTop(): void {
+  window.scrollTo({ top: 0, behavior: scrollBehavior() })
 }

@@ -31,9 +31,9 @@ const Work = () => {
   }, [])
 
   return (
-    <section id="work" className="px-5 py-24 sm:px-6 lg:px-8 lg:py-32">
+    <section id="work" aria-labelledby="work-title" className="px-5 py-24 sm:px-6 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-shell">
-        <p className="section-label">01 — Selected work</p>
+        <h2 id="work-title" className="section-label">01 — Selected work</h2>
 
         <div className="mt-14 grid grid-cols-1 gap-14 lg:grid-cols-[220px_1fr] lg:gap-20">
           <nav aria-label="Project index" className="hidden self-start lg:sticky lg:top-28 lg:block">
@@ -118,7 +118,7 @@ const Work = () => {
         </div>
 
         <div className="mt-28 border-t border-line pt-12">
-          <p className="section-label">Also built</p>
+          <h3 className="section-label">Also built</h3>
           <ul className="mt-7 grid grid-cols-1 gap-x-12 gap-y-0 sm:grid-cols-2">
             {alsoBuilt.map((repo) => (
               <li key={repo.href} className="border-b border-line">
@@ -144,7 +144,7 @@ const Work = () => {
         </div>
 
         <div className="mt-20">
-          <p className="section-label">Contributions</p>
+          <h3 className="section-label">Contributions</h3>
           <div className="mt-6 overflow-x-auto rounded-lg border border-line p-4">
             {/* `key` forces a remount when the theme flips — an iframe will not
                 re-read a changed query string on its own. `redias` is the

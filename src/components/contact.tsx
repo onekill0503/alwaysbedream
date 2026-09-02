@@ -6,7 +6,7 @@ const Contact = () => {
   const reduced = prefersReducedMotion()
 
   return (
-    <section id="contact" className="px-5 py-28 sm:px-6 lg:px-8 lg:py-40">
+    <section id="contact" aria-labelledby="contact-title" className="px-5 py-28 sm:px-6 lg:px-8 lg:py-40">
       <motion.div
         initial={reduced ? false : { opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -14,11 +14,11 @@ const Contact = () => {
         transition={{ duration: 0.7, ease: 'easeOut' }}
         className="mx-auto max-w-shell border-t border-line pt-16"
       >
-        <p className="section-label">04 — Contact</p>
+        <h2 id="contact-title" className="section-label">04 — Contact</h2>
 
-        <h2 className="mt-8 max-w-[14ch] font-serif text-[clamp(2.1rem,6.5vw,2.875rem)] leading-[1.06] text-ink">
+        <h3 className="mt-8 max-w-[14ch] font-serif text-[clamp(2.1rem,6.5vw,2.875rem)] leading-[1.06] text-ink">
           Let&rsquo;s build <em className="italic text-accent">something</em>.
-        </h2>
+        </h3>
 
         <a
           href={`mailto:${profile.email}`}

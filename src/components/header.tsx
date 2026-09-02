@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { contactSection, profile, sections } from '@/content/site'
-import { scrollToId } from '@/lib/utils'
+import { scrollToId, scrollToTop } from '@/lib/utils'
 import ThemeToggle from './theme-toggle'
 
 const Header = () => {
@@ -61,7 +61,7 @@ const Header = () => {
       <div className="mx-auto flex h-14 max-w-shell items-center justify-between gap-4 px-5 sm:h-[72px] sm:px-6 lg:px-8">
         <button
           type="button"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={scrollToTop}
           className="font-serif text-[17px] leading-none text-ink transition-opacity hover:opacity-70 sm:text-[19px]"
         >
           {profile.name}
@@ -82,8 +82,10 @@ const Header = () => {
                     {section.num}
                   </span>
                   <span
-                    className={`transition-colors ${
-                      active === section.id ? 'text-ink' : 'text-mut group-hover:text-ink'
+                    className={`underline-offset-[6px] transition-colors ${
+                      active === section.id
+                        ? 'text-ink underline decoration-accent decoration-2'
+                        : 'text-mut group-hover:text-ink'
                     }`}
                   >
                     {section.label}
@@ -114,8 +116,10 @@ const Header = () => {
                 type="button"
                 onClick={() => scrollToId(section.id)}
                 aria-current={active === section.id ? 'true' : undefined}
-                className={`font-mono text-[10.5px] uppercase tracking-[0.1em] transition-colors ${
-                  active === section.id ? 'text-accent' : 'text-fade'
+                className={`font-mono text-[10.5px] uppercase tracking-[0.1em] underline-offset-[6px] transition-colors ${
+                  active === section.id
+                    ? 'text-accent underline decoration-accent decoration-2'
+                    : 'text-fade'
                 }`}
               >
                 {section.label}

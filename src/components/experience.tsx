@@ -6,9 +6,9 @@ const Experience = () => {
   const reduced = prefersReducedMotion()
 
   return (
-    <section id="experience" className="px-5 py-24 sm:px-6 lg:px-8 lg:py-32">
+    <section id="experience" aria-labelledby="experience-title" className="px-5 py-24 sm:px-6 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-shell">
-        <p className="section-label">02 — Experience</p>
+        <h2 id="experience-title" className="section-label">02 — Experience</h2>
 
         <div className="mt-14 grid gap-16">
           {experience.map((group) => (
