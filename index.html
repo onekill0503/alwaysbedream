@@ -2,6 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="theme-color" id="theme-color" content="#fbfbfa" />
+    <script>
+      // Runs before first paint. React mounts far too late to prevent
+      // the flash. localStorage throws in some privacy modes, hence try/catch.
+      try {
+        var stored = localStorage.getItem('theme');
+        var isDark =
+          stored === 'dark' ||
+          (!stored && matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) document.documentElement.classList.add('dark');
+        var meta = document.getElementById('theme-color');
+        if (meta) meta.setAttribute('content', isDark ? '#0f0f11' : '#fbfbfa');
+      } catch (e) {}
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Full-stack developer and blockchain enthusiast based in Indonesia. I help brands and startups build exceptional digital experiences with modern web technologies." />
@@ -17,9 +31,8 @@
     <link rel="canonical" href="https://alwaysbedream.dev" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://cdn.simpleicons.org" />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" /></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" /></noscript>
     <title>Aji Dwi Prastio — Full-Stack Developer</title>
   </head>
   <body>

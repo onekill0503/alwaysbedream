@@ -2,22 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom CSS variables */
+/* ---- Design tokens -------------------------------------------------
+   Every value below is WCAG AA verified against its own --paper.
+   Do not adjust by eye. See the spec's "Contrast corrections" table. */
+
 :root {
-  --background: 0 0% 100%;
-  --foreground: 0 0% 3.9%;
-  --muted: 0 0% 96.1%;
-  --muted-foreground: 0 0% 45.1%;
-  --border: 0 0% 89.8%;
-  --primary: 0 0% 9%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 0 0% 96.1%;
-  --secondary-foreground: 0 0% 9%;
-  --accent: 0 0% 96.1%;
-  --accent-foreground: 0 0% 9%;
+  --ink: #0d0d0f;
+  --mut: #55555e;
+  --fade: #6b6b73;
+  --line: #e4e4e7;
+  --paper: #fbfbfa;
+  --panel: #ffffff;
+  --red: #d42b1a;
+
+  /* Alpha derivations. Alpha over paper and alpha over near-black do not
+     land in the same place, so these are per-theme rather than one value. */
+  --pill-fill: rgba(212, 43, 26, 0.05);
+  --pill-line: rgba(212, 43, 26, 0.30);
+  --layer-fill: rgba(255, 255, 255, 0.5);
+  --layer-flash: rgba(212, 43, 26, 0.20);
+  --header-bg: rgba(251, 251, 250, 0.82);
 }
 
-/* Reset and base styles */
+.dark {
+  --ink: #f4f4f6;
+  --mut: #9d9da8;
+  --fade: #7a7a85;
+  --line: #26262b;
+  --paper: #0f0f11;
+  --panel: #141417;
+  --red: #ff4a36;
+
+  --pill-fill: rgba(255, 74, 54, 0.12);
+  --pill-line: rgba(255, 74, 54, 0.42);
+  --layer-fill: rgba(255, 255, 255, 0.04);
+  --layer-flash: rgba(255, 74, 54, 0.18);
+  --header-bg: rgba(15, 15, 17, 0.82);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -26,19 +48,25 @@
 
 html {
   scroll-behavior: smooth;
-  font-feature-settings: 'cv11', 'ss01';
-  font-variation-settings: 'opsz' 850;
-  overflow-x: hidden;
+  /* clip, NOT hidden: overflow-x:hidden makes html a scroll container and
+     silently disables position:sticky in every descendant. */
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: hsl(var(--background));
-  color: hsl(var(--foreground));
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
   line-height: 1.5;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 #root {
@@ -46,61 +74,50 @@ body {
   width: 100%;
 }
 
+/* Sections are scrolled to by id under a fixed header. */
+section[id] {
+  scroll-margin-top: 88px;
+}
 
 ::selection {
-  background: hsl(var(--primary));
-  color: hsl(var(--primary-foreground));
+  background: var(--ink);
+  color: var(--paper);
 }
 
-/* Remove focus outline for mouse users */
-.js-focus-visible :focus:not(.focus-visible) {
-  outline: none;
-}
-
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
-
 ::-webkit-scrollbar-track {
-  background: hsl(var(--muted));
+  background: var(--paper);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted-foreground));
+  background: var(--line);
   border-radius: 3px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--foreground));
+  background: var(--fade);
 }
 
-/* Custom animations */
-@keyframes fadeIn {
-  from { 
-    opacity: 0; 
-    transform: translateY(20px); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
+/* ---- Shared type classes ------------------------------------------ */
+
+.section-label {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fade);
 }
 
-.fade-in {
-  animation: fadeIn 0.5s ease-in-out;
+/* Inter 300 thins out further against a dark ground; step it up. */
+.body-copy {
+  font-weight: 300;
+}
+.dark .body-copy {
+  font-weight: 400;
 }
 
-@keyframes shimmer {
-  0% { background-position: 200% center; }
-  100% { background-position: -200% center; }
-}
-
-/* Hide scrollbar for horizontal scroll containers */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+.rule {
+  height: 1px;
+  background: var(--line);
 }
