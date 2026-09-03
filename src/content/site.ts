@@ -27,7 +27,7 @@ export const about = {
   },
   paragraphs: [
     [
-      { text: 'Backend and DevOps by trade — ' },
+      { text: 'Backend and DevOps by trade, ' },
       { text: 'six years', strong: true },
       { text: ' of it. Currently keeping infrastructure, pipelines and databases running at ' },
       { text: 'BIGIO.ID', strong: true },

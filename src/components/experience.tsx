@@ -67,7 +67,7 @@ const Experience = () => {
 
         <p className="body-copy mt-12 max-w-[62ch] text-[14px] leading-[1.8] text-mut">
           {experienceCrossRef.lead}{' '}
-          <span className="text-ink">{experienceCrossRef.projects.join(', ')}</span> —{' '}
+          <span className="text-ink">{experienceCrossRef.projects.join(', ')}</span>,{' '}
           <a
             href="#work"
             className="border-b border-line pb-0.5 text-ink transition-colors hover:border-accent hover:text-accent"
