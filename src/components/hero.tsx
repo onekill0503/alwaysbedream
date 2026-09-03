@@ -79,11 +79,10 @@ const Hero = () => {
             {HAS_RESUME && (
               <a
                 href={links.resume}
-                target="_blank"
-                rel="noopener noreferrer"
+                download
                 className="font-mono text-[11px] uppercase tracking-[0.1em] text-mut transition-colors hover:text-accent"
               >
-                Résumé ↗
+                Résumé ↓
               </a>
             )}
           </motion.div>

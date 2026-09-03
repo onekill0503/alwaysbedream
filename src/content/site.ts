@@ -61,7 +61,7 @@ export const links = {
  * this to the literal type `false`, and every `HAS_RESUME &&` guard downstream
  * is flagged as dead code.
  */
-export const HAS_RESUME: boolean = false
+export const HAS_RESUME: boolean = true
 
 export const sections = [
   { id: 'work', num: '01', label: 'Work' },

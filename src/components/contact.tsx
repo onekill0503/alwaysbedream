@@ -28,20 +28,21 @@ const Contact = () => {
         </a>
 
         <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3">
-          {[
+          {([
             { label: 'GitHub', href: links.github },
             { label: 'LinkedIn', href: links.linkedin },
             { label: 'X', href: links.x },
-            ...(HAS_RESUME ? [{ label: 'Résumé', href: links.resume }] : []),
-          ].map((link) => (
+            ...(HAS_RESUME ? [{ label: 'Résumé', href: links.resume, download: true }] : []),
+          ] as { label: string; href: string; download?: boolean }[]).map((link) => (
             <a
               key={link.label}
               href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              {...(link.download
+                ? { download: true }
+                : { target: '_blank', rel: 'noopener noreferrer' })}
               className="font-mono text-[11px] uppercase tracking-[0.1em] text-fade transition-colors hover:text-accent"
             >
-              {link.label} ↗
+              {link.label} {link.download ? '↓' : '↗'}
             </a>
           ))}
         </div>
