@@ -233,14 +233,11 @@ export interface StackRow {
 export const stack: StackRow[] = [
   {
     label: 'Languages',
-    items: ['TypeScript', 'JavaScript', 'Rust', 'Python', 'PHP'],
+    items: ['TypeScript', 'JavaScript', 'Ruby', 'Python', 'PHP' ,'C#' , 'Java'],
   },
-  { label: 'Frontend', items: ['React', 'Next.js', 'Tailwind'] },
-  { label: 'Backend', items: ['Node.js', 'Hono', 'Express', 'Laravel', 'Prisma'] },
-  { label: 'Data', items: ['PostgreSQL', 'MongoDB', 'Drizzle'] },
-  { label: 'Chain', items: ['Solidity', 'Foundry', 'Ethereum', 'EigenLayer'] },
-  {
-    label: 'Infra',
-    items: ['Docker', 'Kubernetes', 'Linux', 'GitHub Actions', 'Vercel', 'Bun'],
-  },
+  { label: 'Frontend', items: ['React', 'Next.js', 'Tailwind', 'Vite', 'Cypress', 'Playwright' , 'Wordpress' , 'Directus'] },
+  { label: 'Backend', items: ['Hono', 'Express', 'Prisma', 'Drizzle', 'Sequelize', 'ElysiaJs', 'Java Springboot', 'ASP.NET Core' , 'Ruby on Rails'] },
+  { label: 'Data', items: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis', 'Apollo GraphQL'] },
+  { label: 'Chain', items: ['Solidity', 'Foundry', 'Ethereum', 'EigenLayer', 'Indexer'] },
+  { label: 'Infra', items: ['Docker', 'Linux', 'GitHub Actions', 'Vercel' ,'Ubuntu', 'WAF', 'S3 Storage', 'Cloudflare','Nginx', 'HCP Vault', 'ModSec' , 'RabbitMQ', 'Loki', 'Grafana', 'Tempo', 'Mimir', 'Prometheus', 'OpenTelemetry'] },
 ]

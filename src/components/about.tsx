@@ -56,7 +56,7 @@ const About = () => {
             </dl>
           </motion.div>
 
-          <div className="self-start lg:max-w-[360px]">
+          <div className="self-start lg:max-w-[700px]">
             <h3 className="section-label">Stack</h3>
             <dl className="mt-6">
               {stack.map((row) => (
