@@ -58,14 +58,14 @@ const Header = () => {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-[var(--header-bg)] backdrop-blur-[9px]">
-      <div className="mx-auto flex h-14 max-w-shell items-center justify-between gap-4 px-5 sm:h-[72px] sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-14 max-w-shell items-center justify-between gap-4 px-6 sm:h-[72px] sm:px-10 lg:px-16">
         <button
           type="button"
           onClick={scrollToTop}
-          className="font-serif text-[17px] leading-none text-ink transition-opacity hover:opacity-70 sm:text-[19px]"
+          aria-label={`${profile.name} — back to top`}
+          className="font-mono text-[15px] font-medium leading-none tracking-[0.12em] text-ink transition-opacity hover:opacity-70 sm:text-[16px]"
         >
-          {profile.name}
-          <span className="text-accent">.</span>
+          <span className="text-fade">[</span> A <span className="text-fade">]</span>
         </button>
 
         <nav aria-label="Sections" className="hidden sm:block">
@@ -109,7 +109,7 @@ const Header = () => {
 
       {/* Mobile keeps the nav on a second row rather than dropping it. */}
       <nav aria-label="Sections" className="border-t border-line sm:hidden">
-        <ul className="mx-auto flex h-9 max-w-shell items-center gap-6 px-5">
+        <ul className="mx-auto flex h-9 max-w-shell items-center gap-6 px-6">
           {[...sections, contactSection].map((section) => (
             <li key={section.id}>
               <button

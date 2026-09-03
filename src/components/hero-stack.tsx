@@ -79,10 +79,15 @@ const HeroStack = () => {
     const tilt = tiltRef.current
     if (reduced || !container || !tilt) return
 
+    const clamp = (n: number) => Math.max(-0.5, Math.min(0.5, n))
     const onMove = (event: MouseEvent) => {
       const rect = container.getBoundingClientRect()
-      const px = (event.clientX - rect.left) / rect.width - 0.5
-      const py = (event.clientY - rect.top) / rect.height - 0.5
+      // Normalise against a fixed radius around the stack's centre, not the
+      // container width. Since the section went full-bleed the container is
+      // far wider than the object, so width-relative math kept the cursor
+      // pinned near px=0 — no tilt — the whole time it was over the stack.
+      const px = clamp((event.clientX - (rect.left + rect.width / 2)) / 300)
+      const py = clamp((event.clientY - (rect.top + rect.height / 2)) / 260)
       // Direct style write, no setState: this fires on every pixel of movement.
       tilt.style.transform = `perspective(1000px) rotateY(${px * 22}deg) rotateX(${-py * 22}deg)`
     }
@@ -111,20 +116,22 @@ const HeroStack = () => {
             ))}
             <div className="hero-stack__packet" />
           </div>
+
+          {/* Inside the tilt wrapper so the labels ride the float and the
+              mouse tilt with the stack as one object. */}
+          <ul className="hero-stack__legend">
+            {LAYERS.map((layer, index) => (
+              <li
+                key={layer.name}
+                className={`hero-stack__legend-row hero-stack__legend-row--${index}`}
+              >
+                <span className="hero-stack__legend-name">{layer.name}</span>
+                <span className="hero-stack__legend-tech">{layer.tech}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-
-      <ul className="hero-stack__legend">
-        {LAYERS.map((layer, index) => (
-          <li
-            key={layer.name}
-            className={`hero-stack__legend-row hero-stack__legend-row--${index}`}
-          >
-            <span className="hero-stack__legend-name">{layer.name}</span>
-            <span className="hero-stack__legend-tech">{layer.tech}</span>
-          </li>
-        ))}
-      </ul>
     </div>
   )
 }

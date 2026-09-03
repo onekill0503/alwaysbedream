@@ -2,7 +2,8 @@ export const githubUser = 'onekill0503'
 
 export const profile = {
   name: 'Aji Dwi Prastio',
-  role: 'Backend & DevOps engineer. Smart contracts after hours.',
+  kicker: 'Backend & DevOps engineer',
+  tagline: 'Smart contracts after hours.',
   email: 'business@alwaysbedream.dev',
   location: 'Malang, Indonesia',
   timezone: 'UTC+7',

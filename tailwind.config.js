@@ -22,7 +22,11 @@ module.exports = {
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       maxWidth: {
-        shell: '1180px',
+        // Full-bleed: sections span the viewport, held off the edge only by
+        // each section's own px-5 / sm:px-6 / lg:px-8 padding. Line length
+        // stays readable through the per-block caps (max-w-[60ch] etc.),
+        // not through this shell.
+        shell: '100%',
       },
     },
   },

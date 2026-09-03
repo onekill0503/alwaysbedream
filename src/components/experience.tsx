@@ -6,7 +6,7 @@ const Experience = () => {
   const reduced = prefersReducedMotion()
 
   return (
-    <section id="experience" aria-labelledby="experience-title" className="px-5 py-24 sm:px-6 lg:px-8 lg:py-32">
+    <section id="experience" aria-labelledby="experience-title" className="px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
       <div className="mx-auto max-w-shell">
         <h2 id="experience-title" className="section-label">02 — Experience</h2>
 

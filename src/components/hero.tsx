@@ -21,7 +21,7 @@ const Hero = () => {
     <section
       id="hero"
       aria-labelledby="hero-title"
-      className="relative flex min-h-[92vh] items-center px-5 pb-16 pt-28 sm:px-6 lg:px-8"
+      className="relative flex min-h-[92vh] items-center px-6 pb-16 pt-28 sm:px-10 lg:px-16"
     >
       <motion.div
         variants={container}
@@ -30,36 +30,50 @@ const Hero = () => {
         className="mx-auto grid w-full max-w-shell grid-cols-1 items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-16"
       >
         <div>
+          <motion.p
+            variants={item}
+            className="font-mono text-[11px] uppercase tracking-[0.18em] text-fade"
+          >
+            {profile.kicker}
+          </motion.p>
+
           <motion.h1
             id="hero-title"
             variants={item}
-            className="font-serif text-[clamp(2.75rem,8vw,5.25rem)] font-normal leading-[1.02] tracking-tight text-ink"
+            className="mt-5 font-serif text-[clamp(2.75rem,7vw,5.5rem)] font-normal leading-[0.98] tracking-[-0.01em] text-ink"
           >
             {profile.name}
             <span className="text-accent">.</span>
           </motion.h1>
 
+          <motion.div
+            variants={item}
+            aria-hidden="true"
+            className="mt-6 h-[3px] w-16 rounded-full bg-accent"
+          />
+
           <motion.p
             variants={item}
-            className="body-copy mt-6 max-w-[42ch] font-sans text-[clamp(1rem,2vw,1.3rem)] leading-relaxed text-mut"
+            className="body-copy mt-6 max-w-[38ch] font-sans text-[clamp(1.05rem,2vw,1.35rem)] leading-relaxed text-mut"
           >
-            {profile.role}
+            {profile.tagline}
           </motion.p>
 
-          <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-3">
+          <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3">
             <button
               type="button"
               onClick={() => scrollToId('work')}
-              className="rounded-md bg-ink px-5 py-3 font-mono text-[11px] uppercase tracking-[0.1em] text-paper transition-opacity hover:opacity-85"
+              className="group inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-ink transition-colors hover:text-accent"
             >
-              See the work ↓
+              See the work
+              <span className="transition-transform group-hover:translate-y-0.5">↓</span>
             </button>
 
             <a
               href={`mailto:${profile.email}`}
-              className="rounded-md border border-line px-5 py-3 font-mono text-[11px] uppercase tracking-[0.1em] text-ink transition-colors hover:border-accent hover:text-accent"
+              className="font-mono text-[11px] uppercase tracking-[0.1em] text-mut transition-colors hover:text-accent"
             >
-              Email me
+              Email ↗
             </a>
 
             {HAS_RESUME && (
@@ -67,7 +81,7 @@ const Hero = () => {
                 href={links.resume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-md border border-line px-5 py-3 font-mono text-[11px] uppercase tracking-[0.1em] text-ink transition-colors hover:border-accent hover:text-accent"
+                className="font-mono text-[11px] uppercase tracking-[0.1em] text-mut transition-colors hover:text-accent"
               >
                 Résumé ↗
               </a>

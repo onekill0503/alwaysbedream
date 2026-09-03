@@ -6,7 +6,7 @@ const Contact = () => {
   const reduced = prefersReducedMotion()
 
   return (
-    <section id="contact" aria-labelledby="contact-title" className="px-5 py-28 sm:px-6 lg:px-8 lg:py-40">
+    <section id="contact" aria-labelledby="contact-title" className="px-6 py-28 sm:px-10 lg:px-16 lg:py-40">
       <motion.div
         initial={reduced ? false : { opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

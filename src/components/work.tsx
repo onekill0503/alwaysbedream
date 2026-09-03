@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { alsoBuilt, githubUser, work } from '@/content/site'
-import { useTheme } from '@/lib/theme'
+import { alsoBuilt, work } from '@/content/site'
 import { prefersReducedMotion } from '@/lib/utils'
 
 const Work = () => {
-  const { resolved } = useTheme()
   const reduced = prefersReducedMotion()
   const listRef = useRef<HTMLOListElement>(null)
   const [active, setActive] = useState(work[0].slug)
@@ -31,7 +29,7 @@ const Work = () => {
   }, [])
 
   return (
-    <section id="work" aria-labelledby="work-title" className="px-5 py-24 sm:px-6 lg:px-8 lg:py-32">
+    <section id="work" aria-labelledby="work-title" className="px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
       <div className="mx-auto max-w-shell">
         <h2 id="work-title" className="section-label">01 — Selected work</h2>
 
@@ -141,22 +139,6 @@ const Work = () => {
               </li>
             ))}
           </ul>
-        </div>
-
-        <div className="mt-20">
-          <h3 className="section-label">Contributions</h3>
-          <div className="mt-6 overflow-x-auto rounded-lg border border-line p-4">
-            {/* `key` forces a remount when the theme flips — an iframe will not
-                re-read a changed query string on its own. `redias` is the
-                upstream API's own spelling; it is not a typo to fix. */}
-            <iframe
-              key={resolved}
-              title="GitHub contribution graph"
-              src={`https://jandee.vercel.app/${githubUser}?scheme=${resolved}&weeks=true&footer=true&margin=3&redias=2`}
-              className="h-[130px] w-full min-w-[680px] border-0"
-              loading="lazy"
-            />
-          </div>
         </div>
       </div>
     </section>

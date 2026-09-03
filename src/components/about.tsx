@@ -6,11 +6,11 @@ const About = () => {
   const reduced = prefersReducedMotion()
 
   return (
-    <section id="about" aria-labelledby="about-title" className="px-5 py-24 sm:px-6 lg:px-8 lg:py-32">
+    <section id="about" aria-labelledby="about-title" className="px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
       <div className="mx-auto max-w-shell">
         <h2 id="about-title" className="section-label">03 — About</h2>
 
-        <div className="mt-14 grid grid-cols-1 gap-14 lg:grid-cols-[1fr_380px] lg:gap-24">
+        <div className="mt-14 grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-12">
           <motion.div
             initial={reduced ? false : { opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ const About = () => {
             </dl>
           </motion.div>
 
-          <div className="self-start">
+          <div className="self-start lg:max-w-[360px]">
             <h3 className="section-label">Stack</h3>
             <dl className="mt-6">
               {stack.map((row) => (

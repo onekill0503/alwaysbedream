@@ -1,14 +1,13 @@
 .hero-stack {
   --iso-scale: 1;
+  --stage-h: 360px;
   position: relative;
-  display: grid;
-  gap: 24px;
   perspective: 1000px;
 }
 
 .hero-stack__float {
   position: relative;
-  height: 360px;
+  height: var(--stage-h);
   transform: scale(var(--iso-scale));
   transform-style: preserve-3d;
 }
@@ -58,30 +57,58 @@
   opacity: 0;
 }
 
+/* The legend lives INSIDE the tilt wrapper, as a sibling of the isometric
+   plane — so it rides the idle float and the mouse tilt with the stack as one
+   object, but is not itself skewed by the rotateX/rotateZ of the iso. The
+   float wrapper already applies --iso-scale, so the offsets below are the
+   unscaled screen geometry; they shrink with the stack automatically. */
 .hero-stack__legend {
-  display: grid;
-  gap: 9px;
+  position: absolute;
+  inset: 0;
   list-style: none;
+  pointer-events: none;
 }
 
 .hero-stack__legend-row {
+  position: absolute;
+  /* Right edge pinned relative to the stack's centre, independent of how wide
+     the column gets, so the labels always sit just off the object. */
+  right: calc(50% + 124px);
+  top: calc(50% + var(--row-y));
+  transform: translateY(-50%);
   display: grid;
-  grid-template-columns: 108px 1fr;
-  gap: 14px;
-  align-items: baseline;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--line);
+  gap: 2px;
+  text-align: right;
+  white-space: nowrap;
   font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 10.5px;
+}
+/* Screen offsets of the four layers, top to bottom. rotateX(56deg) maps each
+   translateZ to ~0.83 of itself vertically: +80/+27/-27/-80 -> these. */
+.hero-stack__legend-row--0 { --row-y: -66px; }
+.hero-stack__legend-row--1 { --row-y: -22px; }
+.hero-stack__legend-row--2 { --row-y: 22px; }
+.hero-stack__legend-row--3 { --row-y: 66px; }
+
+/* A short tick from each label toward its layer. */
+.hero-stack__legend-row::after {
+  content: "";
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  width: 10px;
+  height: 1px;
+  background: var(--line);
 }
 .hero-stack__legend-name {
   color: var(--ink);
+  font-size: 10.5px;
   font-weight: 500;
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 .hero-stack__legend-tech {
   color: var(--fade);
+  font-size: 9.5px;
   letter-spacing: 0.02em;
 }
 
@@ -161,13 +188,25 @@
 }
 
 @media (max-width: 1023px) {
-  .hero-stack { --iso-scale: 0.82; }
-  .hero-stack__float { height: 300px; }
+  .hero-stack { --iso-scale: 0.82; --stage-h: 300px; }
 }
 
 @media (max-width: 420px) {
-  .hero-stack { --iso-scale: 0.66; }
-  .hero-stack__float { height: 250px; }
+  .hero-stack { --iso-scale: 0.66; --stage-h: 250px; }
+}
+
+/* Grow the object on larger displays so it does not read as small in the wide
+   full-bleed hero. --iso-scale drives the whole stack (layers, packet and the
+   labels ride it), so the object and its legend scale together. --stage-h
+   grows too, giving the enlarged object vertical room in the flow. */
+@media (min-width: 1280px) {
+  .hero-stack { --iso-scale: 1.12; --stage-h: 400px; }
+}
+@media (min-width: 1536px) {
+  .hero-stack { --iso-scale: 1.28; --stage-h: 440px; }
+}
+@media (min-width: 1800px) {
+  .hero-stack { --iso-scale: 1.45; --stage-h: 480px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
