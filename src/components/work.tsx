@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { alsoBuilt, work } from '@/content/site'
 import { prefersReducedMotion } from '@/lib/utils'
 
@@ -58,7 +58,7 @@ const Work = () => {
 
           <ol ref={listRef} className="grid gap-24 lg:gap-32">
             {work.map((project, index) => (
-              <motion.li
+              <m.li
                 key={project.slug}
                 id={`work-${project.slug}`}
                 data-slug={project.slug}
@@ -110,7 +110,7 @@ const Work = () => {
                     ))}
                   </div>
                 )}
-              </motion.li>
+              </m.li>
             ))}
           </ol>
         </div>

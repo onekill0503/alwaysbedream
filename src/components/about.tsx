@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { about, profile, stack } from '@/content/site'
 import { prefersReducedMotion } from '@/lib/utils'
 
@@ -11,7 +11,7 @@ const About = () => {
         <h2 id="about-title" className="section-label">03 — About</h2>
 
         <div className="mt-14 grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-12">
-          <motion.div
+          <m.div
             initial={reduced ? false : { opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -54,7 +54,7 @@ const About = () => {
                 </div>
               ))}
             </dl>
-          </motion.div>
+          </m.div>
 
           <div className="self-start lg:max-w-[700px]">
             <h3 className="section-label">Stack</h3>

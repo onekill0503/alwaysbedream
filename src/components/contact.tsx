@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { HAS_RESUME, links, profile } from '@/content/site'
 import { prefersReducedMotion } from '@/lib/utils'
 
@@ -7,7 +7,7 @@ const Contact = () => {
 
   return (
     <section id="contact" aria-labelledby="contact-title" className="px-6 py-28 sm:px-10 lg:px-16 lg:py-40">
-      <motion.div
+      <m.div
         initial={reduced ? false : { opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -50,7 +50,7 @@ const Contact = () => {
         <p className="mt-14 font-mono text-[10.5px] uppercase tracking-[0.11em] text-fade">
           {profile.availability} · {profile.location} · {profile.timezone}
         </p>
-      </motion.div>
+      </m.div>
     </section>
   )
 }

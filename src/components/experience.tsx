@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { experience, experienceCrossRef } from '@/content/site'
 import { prefersReducedMotion } from '@/lib/utils'
 
@@ -24,7 +24,7 @@ const Experience = () => {
 
               <ol>
                 {group.roles.map((role) => (
-                  <motion.li
+                  <m.li
                     key={`${group.company}-${role.period}-${role.title}`}
                     initial={reduced ? false : { opacity: 0, y: 14 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -58,7 +58,7 @@ const Experience = () => {
                         ))}
                       </ul>
                     </div>
-                  </motion.li>
+                  </m.li>
                 ))}
               </ol>
             </div>
