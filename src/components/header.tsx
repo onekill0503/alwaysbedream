@@ -63,7 +63,7 @@ const Header = () => {
           type="button"
           onClick={scrollToTop}
           aria-label={`${profile.name} — back to top`}
-          className="font-mono text-[15px] font-medium leading-none tracking-[0.12em] text-ink transition-opacity hover:opacity-70 sm:text-[16px]"
+          className="font-mono text-[15px] font-medium leading-none tracking-[0.12em] text-ink transition-[opacity,transform] hover:opacity-70 active:scale-[0.97] sm:text-[16px]"
         >
           <span className="text-fade">[</span> A <span className="text-fade">]</span>
         </button>
@@ -76,7 +76,7 @@ const Header = () => {
                   type="button"
                   onClick={() => scrollToId(section.id)}
                   aria-current={active === section.id ? 'true' : undefined}
-                  className="group flex items-baseline gap-2 font-mono text-[11px] uppercase tracking-[0.1em]"
+                  className="group flex items-baseline gap-2 font-mono text-[11px] uppercase tracking-[0.1em] transition-transform active:scale-[0.97]"
                 >
                   <span className={active === section.id ? 'text-accent' : 'text-fade'}>
                     {section.num}
@@ -100,7 +100,7 @@ const Header = () => {
           <ThemeToggle />
           <a
             href={`mailto:${profile.email}`}
-            className="rounded-md bg-ink px-3.5 py-2 font-mono text-[10.5px] uppercase tracking-[0.1em] text-paper transition-opacity hover:opacity-85 sm:px-4"
+            className="rounded-md bg-ink px-3.5 py-2 font-mono text-[10.5px] uppercase tracking-[0.1em] text-paper transition-[opacity,transform] hover:opacity-85 active:scale-[0.97] sm:px-4"
           >
             Email me
           </a>
@@ -116,7 +116,7 @@ const Header = () => {
                 type="button"
                 onClick={() => scrollToId(section.id)}
                 aria-current={active === section.id ? 'true' : undefined}
-                className={`font-mono text-[10.5px] uppercase tracking-[0.1em] underline-offset-[6px] transition-colors ${
+                className={`font-mono text-[10.5px] uppercase tracking-[0.1em] underline-offset-[6px] transition-[color,text-decoration-color,transform] active:scale-[0.97] ${
                   active === section.id
                     ? 'text-accent underline decoration-accent decoration-2'
                     : 'text-fade'

@@ -16,7 +16,7 @@ const ThemeToggle = () => {
       onClick={() => setTheme(next)}
       title={`Theme: ${LABELS[theme]}`}
       aria-label={`Theme: ${LABELS[theme]}. Switch to ${LABELS[next]}.`}
-      className="grid h-9 w-9 place-items-center rounded-md border border-line text-mut transition-colors hover:border-accent hover:text-accent"
+      className="grid h-9 w-9 place-items-center rounded-md border border-line text-mut transition-[color,border-color,transform] hover:border-accent hover:text-accent active:scale-[0.97]"
     >
       <Icon size={15} strokeWidth={1.75} aria-hidden="true" />
     </button>

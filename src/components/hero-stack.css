@@ -117,11 +117,13 @@
   opacity: 0;
 }
 
-.hero-stack.is-running .hero-stack__layer--0 { animation: heroLayer0 4.4s linear 1 forwards; }
-.hero-stack.is-running .hero-stack__layer--1 { animation: heroLayer1 4.4s linear 1 forwards; }
-.hero-stack.is-running .hero-stack__layer--2 { animation: heroLayer2 4.4s linear 1 forwards; }
-.hero-stack.is-running .hero-stack__layer--3 { animation: heroLayer3 4.4s linear 1 forwards; }
-.hero-stack.is-running .hero-stack__packet { animation: heroPacket 4.4s linear 1 forwards; }
+/* Timing functions apply per keyframe segment: ease-out for each layer's pop,
+   ease-in-out for the packet's travel between pauses. */
+.hero-stack.is-running .hero-stack__layer--0 { animation: heroLayer0 4.4s cubic-bezier(0.23, 1, 0.32, 1) 1 forwards; }
+.hero-stack.is-running .hero-stack__layer--1 { animation: heroLayer1 4.4s cubic-bezier(0.23, 1, 0.32, 1) 1 forwards; }
+.hero-stack.is-running .hero-stack__layer--2 { animation: heroLayer2 4.4s cubic-bezier(0.23, 1, 0.32, 1) 1 forwards; }
+.hero-stack.is-running .hero-stack__layer--3 { animation: heroLayer3 4.4s cubic-bezier(0.23, 1, 0.32, 1) 1 forwards; }
+.hero-stack.is-running .hero-stack__packet { animation: heroPacket 4.4s cubic-bezier(0.77, 0, 0.175, 1) 1 forwards; }
 .hero-stack.is-running .hero-stack__legend-row--0 { animation: heroLegend0 4.4s linear 1 forwards; }
 .hero-stack.is-running .hero-stack__legend-row--1 { animation: heroLegend1 4.4s linear 1 forwards; }
 .hero-stack.is-running .hero-stack__legend-row--2 { animation: heroLegend2 4.4s linear 1 forwards; }

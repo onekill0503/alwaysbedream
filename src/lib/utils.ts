@@ -33,3 +33,6 @@ export function scrollToId(id: string): void {
 export function scrollToTop(): void {
   window.scrollTo({ top: 0, behavior: scrollBehavior() })
 }
+
+/** Strong ease-out for UI entrances; the built-in `easeOut` is too soft. */
+export const EASE_OUT = [0.23, 1, 0.32, 1] as const

@@ -1,6 +1,6 @@
 import { m } from 'framer-motion'
 import { experience, experienceCrossRef } from '@/content/site'
-import { prefersReducedMotion } from '@/lib/utils'
+import { EASE_OUT, prefersReducedMotion } from '@/lib/utils'
 
 const Experience = () => {
   const reduced = prefersReducedMotion()
@@ -26,10 +26,10 @@ const Experience = () => {
                 {group.roles.map((role) => (
                   <m.li
                     key={`${group.company}-${role.period}-${role.title}`}
-                    initial={reduced ? false : { opacity: 0, y: 14 }}
+                    initial={reduced ? { opacity: 0 } : { opacity: 0, y: 14 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 0.5, ease: 'easeOut' }}
+                    transition={{ duration: 0.45, ease: EASE_OUT }}
                     className="grid grid-cols-1 gap-1 border-b border-line py-6 sm:grid-cols-[128px_1fr] sm:gap-8"
                   >
                     <p

@@ -78,6 +78,9 @@ const HeroStack = () => {
     const container = containerRef.current
     const tilt = tiltRef.current
     if (reduced || !container || !tilt) return
+    // Touch taps fire a synthetic mousemove but never mouseleave, which would
+    // leave the stack stuck mid-tilt.
+    if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return
 
     const clamp = (n: number) => Math.max(-0.5, Math.min(0.5, n))
     const onMove = (event: MouseEvent) => {

@@ -1,6 +1,6 @@
 import { m } from 'framer-motion'
 import { HAS_RESUME, links, profile } from '@/content/site'
-import { prefersReducedMotion } from '@/lib/utils'
+import { EASE_OUT, prefersReducedMotion } from '@/lib/utils'
 
 const Contact = () => {
   const reduced = prefersReducedMotion()
@@ -8,10 +8,10 @@ const Contact = () => {
   return (
     <section id="contact" aria-labelledby="contact-title" className="px-6 py-28 sm:px-10 lg:px-16 lg:py-40">
       <m.div
-        initial={reduced ? false : { opacity: 0, y: 20 }}
+        initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.7, ease: 'easeOut' }}
+        transition={{ duration: 0.5, ease: EASE_OUT }}
         className="mx-auto max-w-shell border-t border-line pt-16"
       >
         <h2 id="contact-title" className="section-label">04 — Contact</h2>

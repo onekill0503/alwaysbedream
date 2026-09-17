@@ -1,21 +1,30 @@
 import { m } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import { HAS_RESUME, links, profile } from '@/content/site'
-import { prefersReducedMotion, scrollToId } from '@/lib/utils'
+import { EASE_OUT, prefersReducedMotion, scrollToId } from '@/lib/utils'
 import HeroStack from './hero-stack'
 
 const container: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
+  visible: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
 }
 
-const item: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
+// Full transform strings, not the `y` shorthand: those run on the main thread,
+// and the hero animates while fonts and scripts are still loading.
+const rise: Variants = {
+  hidden: { opacity: 0, transform: 'translateY(18px)' },
+  visible: { opacity: 1, transform: 'translateY(0px)', transition: { duration: 0.5, ease: EASE_OUT } },
+}
+
+// Reduced motion keeps the fade and drops the movement.
+const fade: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.5, ease: EASE_OUT } },
 }
 
 const Hero = () => {
   const reduced = prefersReducedMotion()
+  const item = reduced ? fade : rise
 
   return (
     <section
@@ -25,7 +34,7 @@ const Hero = () => {
     >
       <m.div
         variants={container}
-        initial={reduced ? false : 'hidden'}
+        initial="hidden"
         animate="visible"
         className="mx-auto grid w-full max-w-shell grid-cols-1 items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-16"
       >
@@ -63,7 +72,7 @@ const Hero = () => {
             <button
               type="button"
               onClick={() => scrollToId('work')}
-              className="group inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-ink transition-colors hover:text-accent"
+              className="group inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-ink transition-[color,transform] hover:text-accent active:scale-[0.97]"
             >
               See the work
               <span className="transition-transform group-hover:translate-y-0.5">↓</span>
@@ -88,9 +97,9 @@ const Hero = () => {
           </m.div>
         </div>
 
-        <m.div variants={item} className="min-w-0">
+        <div className="min-w-0">
           <HeroStack />
-        </m.div>
+        </div>
       </m.div>
     </section>
   )

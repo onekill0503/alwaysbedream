@@ -1,6 +1,6 @@
 import { m } from 'framer-motion'
 import { about, profile, stack } from '@/content/site'
-import { prefersReducedMotion } from '@/lib/utils'
+import { EASE_OUT, prefersReducedMotion } from '@/lib/utils'
 
 const About = () => {
   const reduced = prefersReducedMotion()
@@ -12,10 +12,10 @@ const About = () => {
 
         <div className="mt-14 grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-12">
           <m.div
-            initial={reduced ? false : { opacity: 0, y: 18 }}
+            initial={reduced ? { opacity: 0 } : { opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
+            transition={{ duration: 0.5, ease: EASE_OUT }}
           >
             <p className="max-w-[19ch] font-serif text-[clamp(1.75rem,4.5vw,2.25rem)] leading-[1.14] text-ink">
               {about.lead.before}

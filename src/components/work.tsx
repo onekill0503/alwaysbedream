@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { m } from 'framer-motion'
 import { alsoBuilt, work } from '@/content/site'
-import { prefersReducedMotion } from '@/lib/utils'
+import { EASE_OUT, prefersReducedMotion } from '@/lib/utils'
 
 const Work = () => {
   const reduced = prefersReducedMotion()
@@ -62,10 +62,10 @@ const Work = () => {
                 key={project.slug}
                 id={`work-${project.slug}`}
                 data-slug={project.slug}
-                initial={reduced ? false : { opacity: 0, y: 22 }}
+                initial={reduced ? { opacity: 0 } : { opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
+                transition={{ duration: 0.5, ease: EASE_OUT }}
                 className="scroll-mt-28"
               >
                 <p className="font-mono text-[11px] tracking-[0.14em] text-fade">
