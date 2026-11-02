@@ -109,10 +109,10 @@ const Work = () => {
         </div>
 
         <div className="mt-28 border-t border-line pt-12">
-          <h3 className="section-label">Also built</h3>
-          <ul data-design="Repo grid" className="mt-7 grid grid-cols-1 gap-x-12 gap-y-0 sm:grid-cols-2">
+          <h3 data-design="Label" className="section-label">Also built</h3>
+          <ul className="mt-7 grid grid-cols-1 gap-x-12 gap-y-0 sm:grid-cols-2">
             {alsoBuilt.map((repo) => (
-              <li key={repo.href} className="border-b border-line">
+              <li key={repo.href} data-design={`Repo / ${repo.name}`} className="border-b border-line">
                 <a
                   href={repo.href}
                   target="_blank"

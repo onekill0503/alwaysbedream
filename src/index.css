@@ -22,6 +22,12 @@
   --layer-fill: rgba(255, 255, 255, 0.5);
   --layer-flash: rgba(212, 43, 26, 0.20);
   --header-bg: rgba(251, 251, 250, 0.82);
+
+  /* Design agents: accent, ink, muted, deep accent. --paper text on each. */
+  --agent-1: var(--red);
+  --agent-2: var(--ink);
+  --agent-3: var(--mut);
+  --agent-4: #8f1d11;
 }
 
 .dark {
@@ -38,6 +44,11 @@
   --layer-fill: rgba(255, 255, 255, 0.04);
   --layer-flash: rgba(255, 74, 54, 0.18);
   --header-bg: rgba(15, 15, 17, 0.82);
+
+  --agent-1: var(--red);
+  --agent-2: var(--ink);
+  --agent-3: var(--mut);
+  --agent-4: #ff8f80;
 }
 
 * {
@@ -190,7 +201,7 @@ section[id] {
   font-size: 10px;
   line-height: 1;
   letter-spacing: 0.04em;
-  color: #fff;
+  color: var(--paper);
   background: var(--c);
   white-space: nowrap;
 }

@@ -17,10 +17,11 @@ import { prefersReducedMotion } from '@/lib/utils'
  */
 
 const AGENTS = [
-  { name: 'Layout', color: '#6d5efc' },
-  { name: 'Type', color: '#0ea371' },
-  { name: 'Color', color: '#e8590c' },
-  { name: 'Motion', color: '#2f7cf6' },
+  // Theme tokens from index.css, so agents follow light/dark with the page.
+  { name: 'Layout', color: 'var(--agent-1)' },
+  { name: 'Type', color: 'var(--agent-2)' },
+  { name: 'Color', color: 'var(--agent-3)' },
+  { name: 'Motion', color: 'var(--agent-4)' },
 ]
 
 // An element left waiting this long is revealed without an agent, so a fast
@@ -456,7 +457,7 @@ const AgentCursors = () => {
         <div key={agent.name} className="agent" style={{ '--c': agent.color } as CSSProperties}>
           <div className="agent-body">
             <svg width="16" height="18" viewBox="0 0 16 18">
-              <path d="M1 1l13 7.2-5.8 1.5L5.4 16z" fill="var(--c)" stroke="#fff" strokeWidth="1.4" strokeLinejoin="round" />
+              <path d="M1 1l13 7.2-5.8 1.5L5.4 16z" fill="var(--c)" stroke="var(--paper)" strokeWidth="1.4" strokeLinejoin="round" />
             </svg>
             <span className="agent-tag">{agent.name}</span>
           </div>
