@@ -9,10 +9,10 @@ const social = [
 const Footer = () => (
   <footer className="border-t border-line px-6 py-10 sm:px-10 lg:px-16">
     <div className="mx-auto flex max-w-shell flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-      <p className="font-mono text-[10.5px] tracking-[0.05em] text-fade">
+      <p data-design="Credit" className="font-mono text-[10.5px] tracking-[0.05em] text-fade">
         © {new Date().getFullYear()} {profile.name} · Built with React &amp; Vite
       </p>
-      <ul className="flex items-center gap-6">
+      <ul data-design="Social" className="flex items-center gap-6">
         {social.map((link) => (
           <li key={link.label}>
             <a

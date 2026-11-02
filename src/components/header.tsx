@@ -63,12 +63,13 @@ const Header = () => {
           type="button"
           onClick={scrollToTop}
           aria-label={`${profile.name} — back to top`}
+          data-design="Logo"
           className="font-mono text-[15px] font-medium leading-none tracking-[0.12em] text-ink transition-[opacity,transform] hover:opacity-70 active:scale-[0.97] sm:text-[16px]"
         >
           <span className="text-fade">[</span> A <span className="text-fade">]</span>
         </button>
 
-        <nav aria-label="Sections" className="hidden sm:block">
+        <nav aria-label="Sections" data-design="Nav" className="hidden sm:block">
           <ul className="flex items-center gap-7">
             {sections.map((section) => (
               <li key={section.id}>
@@ -96,7 +97,7 @@ const Header = () => {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2.5">
+        <div data-design="Actions" className="flex items-center gap-2.5">
           <ThemeToggle />
           <a
             href={`mailto:${profile.email}`}
@@ -108,7 +109,7 @@ const Header = () => {
       </div>
 
       {/* Mobile keeps the nav on a second row rather than dropping it. */}
-      <nav aria-label="Sections" className="border-t border-line sm:hidden">
+      <nav aria-label="Sections" data-design="Nav" data-design-fx="shift" className="border-t border-line sm:hidden">
         <ul className="mx-auto flex h-9 max-w-shell items-center gap-6 px-6">
           {[...sections, contactSection].map((section) => (
             <li key={section.id}>

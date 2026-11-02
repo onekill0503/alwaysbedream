@@ -114,9 +114,15 @@ const HeroStack = () => {
       <div className="hero-stack__float">
         <div ref={tiltRef} className="hero-stack__tilt">
           <div className="hero-stack__iso" aria-hidden="true">
+            {/* Reversed so the design agents build the stack bottom-up. */}
             {LAYERS.map((layer, index) => (
-              <div key={layer.name} className={`hero-stack__layer hero-stack__layer--${index}`} />
-            ))}
+              <div
+                key={layer.name}
+                data-design={`Layer / ${layer.name}`}
+                data-design-fx="none"
+                className={`hero-stack__layer hero-stack__layer--${index}`}
+              />
+            )).reverse()}
             <div className="hero-stack__packet" />
           </div>
 
@@ -126,12 +132,13 @@ const HeroStack = () => {
             {LAYERS.map((layer, index) => (
               <li
                 key={layer.name}
+                data-design={`Label / ${layer.name}`}
                 className={`hero-stack__legend-row hero-stack__legend-row--${index}`}
               >
                 <span className="hero-stack__legend-name">{layer.name}</span>
                 <span className="hero-stack__legend-tech">{layer.tech}</span>
               </li>
-            ))}
+            )).reverse()}
           </ul>
         </div>
       </div>

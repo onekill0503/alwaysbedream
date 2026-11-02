@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { m } from 'framer-motion'
 import { alsoBuilt, work } from '@/content/site'
-import { EASE_OUT, prefersReducedMotion } from '@/lib/utils'
 
 const Work = () => {
-  const reduced = prefersReducedMotion()
   const listRef = useRef<HTMLOListElement>(null)
   const [active, setActive] = useState(work[0].slug)
 
@@ -31,13 +28,13 @@ const Work = () => {
   return (
     <section id="work" aria-labelledby="work-title" className="px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
       <div className="mx-auto max-w-shell">
-        <h2 id="work-title" className="section-label">01 — Selected work</h2>
+        <h2 data-design="Section label" id="work-title" className="section-label">01 — Selected work</h2>
 
         <div className="mt-14 grid grid-cols-1 gap-14 lg:grid-cols-[220px_1fr] lg:gap-20">
           <nav aria-label="Project index" className="hidden self-start lg:sticky lg:top-28 lg:block">
             <ol className="grid gap-3">
               {work.map((project, index) => (
-                <li key={project.slug}>
+                <li key={project.slug} data-design={`Index / ${String(index + 1).padStart(2, '0')}`}>
                   <a
                     href={`#work-${project.slug}`}
                     className={`grid grid-cols-[28px_1fr] gap-3 border-l-2 py-1 pl-3 font-mono text-[11px] uppercase tracking-[0.08em] transition-colors ${
@@ -58,33 +55,29 @@ const Work = () => {
 
           <ol ref={listRef} className="grid gap-24 lg:gap-32">
             {work.map((project, index) => (
-              <m.li
+              <li
                 key={project.slug}
                 id={`work-${project.slug}`}
                 data-slug={project.slug}
-                initial={reduced ? { opacity: 0 } : { opacity: 0, y: 22 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.5, ease: EASE_OUT }}
                 className="scroll-mt-28"
               >
                 <p className="font-mono text-[11px] tracking-[0.14em] text-fade">
                   {String(index + 1).padStart(2, '0')}
                 </p>
 
-                <h3 className="mt-3 font-serif text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.08] text-ink">
+                <h3 data-design="Project title" className="mt-3 font-serif text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.08] text-ink">
                   {project.title}
                 </h3>
 
-                <p className="mt-4 inline-block rounded-full border border-[var(--pill-line)] bg-[var(--pill-fill)] px-3 py-1 font-mono text-[10.5px] uppercase tracking-[0.09em] text-accent">
+                <p data-design="Badge" className="mt-4 inline-block rounded-full border border-[var(--pill-line)] bg-[var(--pill-fill)] px-3 py-1 font-mono text-[10.5px] uppercase tracking-[0.09em] text-accent">
                   {project.achievement}
                 </p>
 
-                <p className="body-copy mt-6 max-w-[60ch] text-[15px] leading-[1.75] text-mut">
+                <p data-design="Description" className="body-copy mt-6 max-w-[60ch] text-[15px] leading-[1.75] text-mut">
                   {project.description}
                 </p>
 
-                <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-2">
+                <ul data-design="Tech list" className="mt-6 flex flex-wrap gap-x-4 gap-y-2">
                   {project.tech.map((item) => (
                     <li
                       key={item}
@@ -96,7 +89,7 @@ const Work = () => {
                 </ul>
 
                 {project.links.length > 0 && (
-                  <div className="mt-7 flex flex-wrap gap-5">
+                  <div data-design="Links" className="mt-7 flex flex-wrap gap-5">
                     {project.links.map((link) => (
                       <a
                         key={link.href}
@@ -110,14 +103,14 @@ const Work = () => {
                     ))}
                   </div>
                 )}
-              </m.li>
+              </li>
             ))}
           </ol>
         </div>
 
         <div className="mt-28 border-t border-line pt-12">
           <h3 className="section-label">Also built</h3>
-          <ul className="mt-7 grid grid-cols-1 gap-x-12 gap-y-0 sm:grid-cols-2">
+          <ul data-design="Repo grid" className="mt-7 grid grid-cols-1 gap-x-12 gap-y-0 sm:grid-cols-2">
             {alsoBuilt.map((repo) => (
               <li key={repo.href} className="border-b border-line">
                 <a

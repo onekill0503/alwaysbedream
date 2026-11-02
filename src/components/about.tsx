@@ -1,23 +1,14 @@
-import { m } from 'framer-motion'
 import { about, profile, stack } from '@/content/site'
-import { EASE_OUT, prefersReducedMotion } from '@/lib/utils'
 
 const About = () => {
-  const reduced = prefersReducedMotion()
-
   return (
     <section id="about" aria-labelledby="about-title" className="px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
       <div className="mx-auto max-w-shell">
-        <h2 id="about-title" className="section-label">03 — About</h2>
+        <h2 data-design="Section label" id="about-title" className="section-label">03 — About</h2>
 
         <div className="mt-14 grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-12">
-          <m.div
-            initial={reduced ? { opacity: 0 } : { opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, ease: EASE_OUT }}
-          >
-            <p className="max-w-[19ch] font-serif text-[clamp(1.75rem,4.5vw,2.25rem)] leading-[1.14] text-ink">
+          <div>
+            <p data-design="Lead" className="max-w-[19ch] font-serif text-[clamp(1.75rem,4.5vw,2.25rem)] leading-[1.14] text-ink">
               {about.lead.before}
               <em className="italic text-accent">{about.lead.accent}</em>
               {about.lead.after}
@@ -26,6 +17,7 @@ const About = () => {
             {about.paragraphs.map((segments) => (
               <p
                 key={segments[0].text}
+                data-design="Paragraph"
                 className="body-copy mt-7 max-w-[58ch] text-[16px] leading-[1.8] text-mut"
               >
                 {segments.map((segment, index) =>
@@ -40,7 +32,7 @@ const About = () => {
               </p>
             ))}
 
-            <dl className="mt-10 grid grid-cols-1 gap-x-10 gap-y-4 border-t border-line pt-8 sm:grid-cols-3">
+            <dl data-design="Facts" className="mt-10 grid grid-cols-1 gap-x-10 gap-y-4 border-t border-line pt-8 sm:grid-cols-3">
               {[
                 { term: 'Based in', value: profile.location },
                 { term: 'Timezone', value: profile.timezone },
@@ -54,14 +46,15 @@ const About = () => {
                 </div>
               ))}
             </dl>
-          </m.div>
+          </div>
 
           <div className="self-start lg:max-w-[700px]">
-            <h3 className="section-label">Stack</h3>
+            <h3 data-design="Label" className="section-label">Stack</h3>
             <dl className="mt-6">
               {stack.map((row) => (
                 <div
                   key={row.label}
+                  data-design={`Stack / ${row.label}`}
                   className="grid grid-cols-[84px_1fr] items-baseline gap-5 border-b border-line py-4"
                 >
                   <dt className="font-mono text-[10px] uppercase tracking-[0.13em] text-fade">

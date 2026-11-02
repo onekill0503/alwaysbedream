@@ -5,6 +5,7 @@ import Experience from './components/experience'
 import About from './components/about'
 import Contact from './components/contact'
 import Footer from './components/footer'
+import AgentCursors from './components/agent-cursors'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import { LazyMotion, domAnimation } from 'framer-motion'
 
@@ -30,6 +31,7 @@ function App() {
         </main>
 
         <Footer />
+        <AgentCursors />
         <SpeedInsights />
       </div>
     </LazyMotion>

@@ -131,3 +131,128 @@ section[id] {
   outline-offset: 2px;
   border-radius: 2px;
 }
+
+/* ---- Design agents (agent-cursors.tsx) ---------------------------- */
+
+/* Marked content waits, clipped to its top-left corner, until an agent
+   builds it. Only under .agents-on, which JS sets, so content is never
+   hidden without the script that reveals it. The agent loop writes inline
+   clip-path / translate / rotate while it works, which override this. */
+.agents-on [data-design]:not([data-design-state="built"]) {
+  clip-path: inset(0 100% 100% 0);
+}
+/* Fallback reveal for elements no agent reached in time. */
+.agents-on [data-design][data-design-state="active"] {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 650ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Above the fixed header (z-50): agents design that too. */
+.agents {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 0;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.agent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  will-change: transform;
+}
+.agents.is-ready .agent {
+  opacity: 1;
+}
+
+.agent-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  transform-origin: 1px 1px;
+  transition: scale 140ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.agent.is-press .agent-body {
+  scale: 0.82;
+}
+
+.agent svg {
+  transform-origin: 1px 1px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+}
+
+.agent-tag,
+.agent-frame-tag {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--c);
+  white-space: nowrap;
+}
+.agent-tag {
+  margin-top: 14px;
+  padding: 4px 7px;
+  border-radius: 999px;
+}
+
+/* Sized every frame by the agent loop, so no width/height transition. */
+.agent-frame {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 1.5px solid var(--c);
+  background: color-mix(in srgb, var(--c) 7%, transparent);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.agent-frame.is-on {
+  opacity: 1;
+}
+.agent-frame-tag {
+  position: absolute;
+  left: -1.5px;
+  bottom: calc(100% + 4px);
+  padding: 3px 5px;
+  border-radius: 2px;
+}
+.agent-caret {
+  position: absolute;
+  top: 12%;
+  height: 76%;
+  width: 2px;
+  margin-left: 1px;
+  background: var(--c);
+  opacity: 0;
+}
+.agent-frame.is-typing .agent-caret {
+  opacity: 1;
+}
+.agent-frame i {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: var(--panel);
+  border: 1.5px solid var(--c);
+}
+.agent-frame i:nth-of-type(1) { left: -4px; top: -4px; }
+.agent-frame i:nth-of-type(2) { right: -4px; top: -4px; }
+.agent-frame i:nth-of-type(3) { left: -4px; bottom: -4px; }
+.agent-frame i:nth-of-type(4) { right: -4px; bottom: -4px; }
+
+/* With agents on, the stack's layers and labels are built by agents one at
+   a time, so the timed CSS build is switched off (the packet still runs). */
+.agents-on .hero-stack.is-armed .hero-stack__layer,
+.agents-on .hero-stack.is-armed .hero-stack__legend-row {
+  opacity: 1;
+  animation: none;
+}
+/* The packet waits, at its first frame, until every layer has been built. */
+.agents-on .hero-stack:has(.hero-stack__layer:not([data-design-state="built"])) .hero-stack__packet {
+  animation-play-state: paused;
+  visibility: hidden;
+}

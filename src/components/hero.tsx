@@ -1,7 +1,7 @@
 import { m } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import { HAS_RESUME, links, profile } from '@/content/site'
-import { EASE_OUT, prefersReducedMotion, scrollToId } from '@/lib/utils'
+import { EASE_OUT, scrollToId } from '@/lib/utils'
 import HeroStack from './hero-stack'
 
 const container: Variants = {
@@ -9,23 +9,14 @@ const container: Variants = {
   visible: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
 }
 
-// Full transform strings, not the `y` shorthand: those run on the main thread,
-// and the hero animates while fonts and scripts are still loading.
-const rise: Variants = {
-  hidden: { opacity: 0, transform: 'translateY(18px)' },
-  visible: { opacity: 1, transform: 'translateY(0px)', transition: { duration: 0.5, ease: EASE_OUT } },
-}
-
-// Reduced motion keeps the fade and drops the movement.
-const fade: Variants = {
+// Fade only: the movement comes from the design agents (agent-cursors.tsx),
+// which measure these elements and would frame a mid-rise position.
+const item: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.5, ease: EASE_OUT } },
 }
 
 const Hero = () => {
-  const reduced = prefersReducedMotion()
-  const item = reduced ? fade : rise
-
   return (
     <section
       id="hero"
@@ -41,6 +32,7 @@ const Hero = () => {
         <div>
           <m.p
             variants={item}
+            data-design="Kicker"
             className="font-mono text-[11px] uppercase tracking-[0.18em] text-fade"
           >
             {profile.kicker}
@@ -48,6 +40,7 @@ const Hero = () => {
 
           <m.h1
             id="hero-title"
+            data-design="Heading / H1"
             variants={item}
             className="mt-5 font-serif text-[clamp(2.75rem,7vw,5.5rem)] font-normal leading-[0.98] tracking-[-0.01em] text-ink"
           >
@@ -63,12 +56,13 @@ const Hero = () => {
 
           <m.p
             variants={item}
+            data-design="Tagline"
             className="body-copy mt-6 max-w-[38ch] font-sans text-[clamp(1.05rem,2vw,1.35rem)] leading-relaxed text-mut"
           >
             {profile.tagline}
           </m.p>
 
-          <m.div variants={item} className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3">
+          <m.div variants={item} data-design="Actions" className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3">
             <button
               type="button"
               onClick={() => scrollToId('work')}

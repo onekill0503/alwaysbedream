@@ -1,19 +1,15 @@
-import { m } from 'framer-motion'
 import { experience, experienceCrossRef } from '@/content/site'
-import { EASE_OUT, prefersReducedMotion } from '@/lib/utils'
 
 const Experience = () => {
-  const reduced = prefersReducedMotion()
-
   return (
     <section id="experience" aria-labelledby="experience-title" className="px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
       <div className="mx-auto max-w-shell">
-        <h2 id="experience-title" className="section-label">02 — Experience</h2>
+        <h2 data-design="Section label" id="experience-title" className="section-label">02 — Experience</h2>
 
         <div className="mt-14 grid gap-16">
           {experience.map((group) => (
             <div key={group.company}>
-              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-line pb-4">
+              <div data-design="Company" className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-line pb-4">
                 <h3 className="font-serif text-[clamp(1.5rem,3vw,2.1rem)] leading-tight text-ink">
                   {group.company}
                 </h3>
@@ -24,12 +20,9 @@ const Experience = () => {
 
               <ol>
                 {group.roles.map((role) => (
-                  <m.li
+                  <li
                     key={`${group.company}-${role.period}-${role.title}`}
-                    initial={reduced ? { opacity: 0 } : { opacity: 0, y: 14 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 0.45, ease: EASE_OUT }}
+                    data-design="Role"
                     className="grid grid-cols-1 gap-1 border-b border-line py-6 sm:grid-cols-[128px_1fr] sm:gap-8"
                   >
                     <p
@@ -58,14 +51,14 @@ const Experience = () => {
                         ))}
                       </ul>
                     </div>
-                  </m.li>
+                  </li>
                 ))}
               </ol>
             </div>
           ))}
         </div>
 
-        <p className="body-copy mt-12 max-w-[62ch] text-[14px] leading-[1.8] text-mut">
+        <p data-design="Cross-reference" className="body-copy mt-12 max-w-[62ch] text-[14px] leading-[1.8] text-mut">
           {experienceCrossRef.lead}{' '}
           <span className="text-ink">{experienceCrossRef.projects.join(', ')}</span>,{' '}
           <a
